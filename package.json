@@ -1,6 +1,13 @@
-{
+	{
   "name": "yummy",
-  "version": "0.0.0",
+  "version": "0.0.1",
+ "repository" : { 
+   "type" : "git",
+   "url" : "https://github.com/tillkuhn/yummy.git"
+   },  
+   "scripts": {
+      "test": "grunt test"
+  },
   "devDependencies": {
     "grunt": "~0.4",
     "grunt-dom-munger": "~3.4",
