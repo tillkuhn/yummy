@@ -3,9 +3,8 @@ node_js:
   - 0.10
 
 before_script:
-  - npm install --quiet -g grunt-cli
-  - npm install --quiet -g bower
-  - bower install	
+  - 'npm install -g bower grunt-cli'
+  - 'bower install'
 
 script:
   - grunt test
