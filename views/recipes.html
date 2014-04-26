@@ -3,17 +3,21 @@
 <h3>My Recipes</h3>
 <p ng-bind="msg"></p>
 <table>
-<tr>
-<th>Name</th>
-<th>Tags</th>
-</tr>
-<tr>
-<td>Curry</td>
-<td>asia,yummy</td>
-</tr>
-<tr>
-<td>Pizza</td>
-<td>italian</td>
-</tr>
+	<tr>
+		<th>Name</th>
+		<th>Ingredients</th>
+		<th>Action</th>
+	</tr>
+	<tr ng-repeat="recipe in recipes">
+		<td ng-bind="recipe.name"></td>
+		<td ng-bind="recipe.ingredients"></td>
+		<td><button ng-click="removeRecipe(recipe)" >Remove</button></td>
+	</tr>
 </table>
+<br/>
+<br/>
+<input type="text" ng-model="newname" placeholder="Name for new recipe"></input><br />
+<input type="text" ng-model="ingredient" placeholder="Name for new recipe"></input><br />
+<button ng-click="saveRecipe(newname,ingredient)" >Save new Recipe</button>
+
 </div>
