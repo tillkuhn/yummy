@@ -6,18 +6,23 @@
 	<tr>
 		<th>Name</th>
 		<th>Ingredients</th>
+		<th>URL</th>
 		<th>Action</th>
 	</tr>
 	<tr ng-repeat="recipe in recipes">
 		<td ng-bind="recipe.name"></td>
 		<td ng-bind="recipe.ingredients"></td>
+		<td ng-bind="recipe.url"></td>
 		<td><button ng-click="removeRecipe(recipe)" >Remove</button></td>
 	</tr>
 </table>
 <br/>
 <br/>
-<input type="text" ng-model="newname" placeholder="Name for new recipe"></input><br />
-<input type="text" ng-model="ingredient" placeholder="Name for new recipe"></input><br />
-<button ng-click="saveRecipe(newname,ingredient)" >Save new Recipe</button>
+<form name="recipeForm" novalidate>
+	<input type="text" ng-model="recipe.name" placeholder="Name for new recipe" pattern="\w{3}"></input><br />
+	<input type="text" ng-model="recipe.ingredients" placeholder="1st ingredient for new recipe"></input><br />
+	<input type="text" ng-model="recipe.url" placeholder="URL to share"></input><br />
+	<button ng-click="saveRecipe(recipe)" >Save new Recipe</button>
+</form>
 
 </div>

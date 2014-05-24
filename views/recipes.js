@@ -5,18 +5,15 @@ angular.module('yummy').factory('Recipe', function ($mongolabResource) {
 
 angular.module('yummy').controller('RecipesCtrl', function ($scope, Recipe) {
 			$scope.msg = "Loading all recipes";
+			$scope.recipe = new Recipe();
 			
             // https://api.mongolab.com/api/1/databases/yummy/collections/recipes?apiKey=gexKhnbdwA0fTjVkU5HwZJ8WHkYL6pQd
 			$scope.recipes = Recipe.query();
 			
-			$scope.saveRecipe = function(name,ingredient) {
-				$scope.msg = name + " saved";
+			$scope.saveRecipe = function(recipe) {
+				$scope.msg = recipe.name + " saved";
 				//        var project = new Project({'key':'value'});
 				//project.saveOrUpdate();
-				var recipe = new Recipe({
-					"name": name, 
-					"ingredients": [ingredient]
-					});
 				recipe.saveOrUpdate();
 				$scope.recipes = Recipe.query(); // refresh
 			}

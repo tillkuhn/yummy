@@ -13,4 +13,8 @@ Nothing special here ...
     bower install	    
     grunt serve   #This will run a development server with watch & livereload enabled.
 	
-	
+Todo
+----
+Deploy somewhere (Heroku)
+http://cloud.dzone.com/articles/how-deploy-angularjs-app	
+http://www.sitepoint.com/deploying-yeomanangular-app-heroku/
