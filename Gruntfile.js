@@ -59,7 +59,7 @@ module.exports = function (grunt) {
         options: {
             jshintrc: '.jshintrc'
         },
-        src: createFolderGlobs(['*.js','!**/*Spec.js'])
+        src: createFolderGlobs(['*.js','!**/*.spec.js'])
       }
     },
     clean: {

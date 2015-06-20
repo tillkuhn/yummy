@@ -1,4 +1,4 @@
-angular.module('yummy', ['ui.bootstrap','ui.utils','ngRoute','ngAnimate','mongolabResource']);
+angular.module('yummy', ['ui.bootstrap','ui.utils','ngRoute','ngAnimate','mongolabResourceHttp']);
 
 angular.module('yummy').config(function($routeProvider) {
 
@@ -10,8 +10,7 @@ angular.module('yummy').config(function($routeProvider) {
 
 });
 
-angular.module('yummy').constant('API_KEY', 'gexKhnbdwA0fTjVkU5HwZJ8WHkYL6pQd');
-angular.module('yummy').constant('DB_NAME', 'yummy');
+angular.module('yummy').constant('MONGOLAB_CONFIG',{API_KEY:'gexKhnbdwA0fTjVkU5HwZJ8WHkYL6pQd', DB_NAME:'yummy'});
 
 angular.module('yummy').run(function($rootScope) {
 

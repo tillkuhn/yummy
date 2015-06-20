@@ -1,29 +1,44 @@
 
-angular.module('yummy').factory('Recipe', function ($mongolabResource) {
-	return $mongolabResource('recipes');
+angular.module('yummy').factory('Recipe', function ($mongolabResourceHttp) {
+	return $mongolabResourceHttp('recipes');
 });
 
 angular.module('yummy').controller('RecipesCtrl', function ($scope, Recipe) {
 	$scope.msg = "Loading all dishes from DB";
-	$scope.recipe = new Recipe();
-
+	$scope.recipe = new Recipe(); // for new entries
+	$scope.recipe.rating = 3;
+	$scope.recipes = [];
 	// https://api.mongolab.com/api/1/databases/yummy/collections/recipes?apiKey=gexKhnbdwA0fTjVkU5HwZJ8WHkYL6pQd
-	$scope.recipes = Recipe.query();
+	//$scope.recipes = Recipe.query();
+
+	$scope.overview = function() {
+		Recipe.all().then(function(recipes){
+			$scope.recipes  = recipes;
+		});
+
+	};
+	$scope.overview();
 
 	$scope.saveRecipe = function(recipe) {
 		$scope.msg = "Saving " + recipe.name;
 		//        var project = new Project({'key':'value'});
 		//project.saveOrUpdate();
-		recipe.saveOrUpdate();
-		$scope.msg = recipe.name + " saved";
-		$scope.recipes = Recipe.query(); // refresh
+		var resultPromise;
+		recipe.$saveOrUpdate().then(function (data) {
+			resultPromise = data;
+			$scope.overview(); // refresh
+			$scope.msg = recipe.name + " saved";
+		});
 	};
 
 	$scope.removeRecipe = function(recipe) {
 		//var project = new Project({'_id':{'$oid':1}, 'key':'value'});
-		recipe.remove();
-		$scope.msg = recipe.name + " removed";
-		$scope.recipes = Recipe.query();
+		var resultPromise;
+		recipe.$remove().then(function (data) {
+			resultPromise = data;
+			$scope.msg = recipe.name + " removed";
+			$scope.overview(); // refresh
+		});
 	};
 
 	$scope.rateFunction = function(rating) {
