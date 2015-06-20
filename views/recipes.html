@@ -42,7 +42,7 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="recipe in recipes  | orderBy:sortType:sortReverse | filter:searchIngredients">
-				<td ng-bind="recipe.name"></td>
+				<td>	<input type="text" ng-model="recipe.name" ng-blur="saveRecipe(recipe)" size="40"/></td>
 				<td ng-bind="recipe.ingredients"></td>
 				<td >
 					<a ng-href="{{recipe.url}}" ng-show="recipe.url" target="show">Show</a>
@@ -56,10 +56,10 @@
 		<br/>
 		<br/>
 
-		<input type="text" ng-model="recipe.name" size="40" placeholder="Name of new dish" pattern="\w{3}"></input>&nbsp;
-		<input type="text" ng-model="recipe.url" size="40" placeholder="PUblic URL to recipe"></input><br />
+		<input type="text" ng-model="recipe.name" size="40" placeholder="Name of new dish"  ng-required /></input>&nbsp;
+		<input type="text" ng-model="recipe.url" size="40" placeholder="Public URL to recipe"></input><br />
 		<input type="text"
-		ng-model="recipe.ingredients" size="82" placeholder="Ingredients (comma separated)"></input><br />
+		ng-model="recipe.ingredients" size="82" placeholder="Ingredients (comma separated)"  ng-required/></input><br />
 		<div class="star-rating"
 		star-rating rating-value="recipe.rating" data-max="5"
 		on-rating-selected="rateFunction(rating)"></div>
