@@ -29,7 +29,7 @@
 					</a>
 				</th>
 				<th>Ingredients</th>
-				<th>Weblink</th>
+				<th>Link</th>
 				<th>
 					<a ng-click="sortType = 'rating'; sortReverse = !sortReverse">
 						Rating
@@ -44,7 +44,9 @@
 			<tr ng-repeat="recipe in recipes  | orderBy:sortType:sortReverse | filter:searchIngredients">
 				<td ng-bind="recipe.name"></td>
 				<td ng-bind="recipe.ingredients"></td>
-				<td ng-bind="recipe.url"></td>
+				<td >
+					<a ng-href="{{recipe.url}}" ng-show="recipe.url" target="show">Show</a>
+				</td>
 				<td ng-bind="recipe.rating"></td>
 				<td><button
 					ng-click="removeRecipe(recipe)" >Remove</button></td>
@@ -54,16 +56,17 @@
 		<br/>
 		<br/>
 
-		<input type="text" ng-model="recipe.name" size="50" placeholder="Name for new	dish" pattern="\w{3}"></input><br />
+		<input type="text" ng-model="recipe.name" size="40" placeholder="Name of new dish" pattern="\w{3}"></input>&nbsp;
+		<input type="text" ng-model="recipe.url" size="40" placeholder="PUblic URL to recipe"></input><br />
 		<input type="text"
-		ng-model="recipe.ingredients" size="50" placeholder="1st ingredient for new dish"></input><br />
-		<input type="text" ng-model="recipe.url" size="50" placeholder="URL to share"></input><br />
+		ng-model="recipe.ingredients" size="82" placeholder="Ingredients (comma separated)"></input><br />
 		<div class="star-rating"
 		star-rating rating-value="recipe.rating" data-max="5"
 		on-rating-selected="rateFunction(rating)"></div>
 
-		<button ng-click="saveRecipe(recipe)" >Save new Dish</button>
-		<!--<pre ng-bind="recipes|json" ></pre>  -->
+		<button ng-click="saveRecipe(recipe)" >Save as yummy new dish</button>
+		<input type="checkbox" ng-model="debug"> Debug
+		<pre ng-bind="recipes|json"  ng-show="debug"></pre>
 		<!--</form> -->
 
 	</div>

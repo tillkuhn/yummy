@@ -7,7 +7,7 @@ angular.module('yummy').controller('RecipesCtrl', function ($scope, Recipe) {
 
 	$scope.sortType     = 'name'; // set the default sort type
 	$scope.sortReverse  = true;  // set the default sort order
-	$scope.searchFish   = '';     // set the default search/filter term
+	$scope.searchIngredients   = '';     // set the default search/filter term
 
 	$scope.msg = "Loading all dishes from DB";
 	$scope.recipe = new Recipe(); // for new entries
@@ -29,6 +29,9 @@ angular.module('yummy').controller('RecipesCtrl', function ($scope, Recipe) {
 		//        var project = new Project({'key':'value'});
 		//project.saveOrUpdate();
 		var resultPromise;
+		if (recipe.ingredients) {
+			recipe.ingredients = recipe.ingredients.split(/[,]+/);
+		}
 		recipe.$saveOrUpdate().then(function (data) {
 			resultPromise = data;
 			$scope.overview(); // refresh
