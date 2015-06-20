@@ -29,7 +29,7 @@ angular.module('yummy').controller('RecipesCtrl', function ($scope, Recipe) {
 		//        var project = new Project({'key':'value'});
 		//project.saveOrUpdate();
 		var resultPromise;
-		if (recipe.ingredients && typeof recipe.ingredients == 'string') {
+		if (recipe.ingredients && typeof recipe.ingredients === 'string') {
 			recipe.ingredients = recipe.ingredients.split(/[,]+/);
 		}
 		recipe.$saveOrUpdate().then(function (data) {
