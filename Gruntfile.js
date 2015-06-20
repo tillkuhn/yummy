@@ -1,4 +1,4 @@
-	/*jslint node: true */
+/*jslint node: true */
 'use strict';
 
 var pkg = require('./package.json');
@@ -59,7 +59,7 @@ module.exports = function (grunt) {
         options: {
             jshintrc: '.jshintrc'
         },
-        src: createFolderGlobs('*.js')
+        src: createFolderGlobs(['*.js','!**/*Spec.js'])
       }
     },
     clean: {

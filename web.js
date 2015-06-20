@@ -1,3 +1,4 @@
+/*jslint node: true */
 /* See http://awaxman11.github.io/blog/2014/07/13/how-to-create-an-angular-app-using-yeoman-and-deploy-it-to-heroku/ */
 var gzippo = require('gzippo');
 var express = require('express');

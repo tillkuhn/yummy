@@ -1,12 +1,12 @@
 <div class="col-md-12" ng-controller="RecipesCtrl">
 
-<h3>My Recipes</h3>
+<h3>My Dishes</h3>
 <p ng-bind="msg"></p>
 <table>
 	<tr>
 		<th>Name</th>
 		<th>Ingredients</th>
-		<th>URL</th>
+		<th>Weblink</th>
 		<th>Action</th>
 	</tr>
 	<tr ng-repeat="recipe in recipes">
@@ -19,10 +19,10 @@
 <br/>
 <br/>
 <form name="recipeForm" novalidate>
-	<input type="text" ng-model="recipe.name" placeholder="Name for new recipe" pattern="\w{3}"></input><br />
-	<input type="text" ng-model="recipe.ingredients" placeholder="1st ingredient for new recipe"></input><br />
-	<input type="text" ng-model="recipe.url" placeholder="URL to share"></input><br />
-	<button ng-click="saveRecipe(recipe)" >Save new Recipe</button>
+	<input type="text" ng-model="recipe.name" size="50" placeholder="Name for new recipe" pattern="\w{3}"></input><br />
+	<input type="text" ng-model="recipe.ingredients" size="50" placeholder="1st ingredient for new recipe"></input><br />
+	<input type="text" ng-model="recipe.url" size="50" placeholder="URL to share"></input><br />
+	<button ng-click="saveRecipe(recipe)" >Save new Dish</button>
 </form>
 
 </div>
