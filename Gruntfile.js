@@ -176,13 +176,14 @@ module.exports = function (grunt) {
         src: ['<%= dom_munger.data.appjs %>','bower_components/angular-mocks/angular-mocks.js'],
         options: {
           keepRunner: false,
-          specs: createFolderGlobs('*-spec.js')
+          specs: createFolderGlobs(['*.spec.js','!vendor/angular-mongolab.spec.js'])
         }
       }
     }
   });
 
-  grunt.registerTask('build',['jshint','clean:before','less','dom_munger','ngtemplates','cssmin','concat','ngmin','uglify','copy','htmlmin','imagemin','clean:after']);
+ // remove less after clean before
+  grunt.registerTask('build',['jshint','clean:before','dom_munger','ngtemplates','cssmin','concat','ngmin','uglify','copy','htmlmin','imagemin','clean:after']);
   grunt.registerTask('serve', ['dom_munger:read','jshint','connect', 'watch']);
   grunt.registerTask('test',['dom_munger:read','jasmine']);
 

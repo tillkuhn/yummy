@@ -4,7 +4,38 @@
   <title>Yummy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="utf-8">
+  <!--
   <link href="app.less" type="text/css" rel="stylesheet/less">
+-->
+<!-- CSS -->
+   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/sandstone/bootstrap.min.css">
+   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+   <style>
+       body { padding-top:50px; }
+       /* for star rating */
+       .rating{
+         color: #a9a9a9;
+         margin: 0;
+         padding: 0;
+       }
+
+       ul.rating {
+         display: inline-block;
+       }
+
+       .rating li {
+         list-style-type: none;
+         display: inline-block;
+         padding: 1px;
+         text-align: center;
+         font-weight: bold;
+         cursor: pointer;
+       }
+
+       .rating .filled {
+         color: #21568b;
+       }   </style>
+
 </head>
 <body>
 
@@ -12,11 +43,13 @@
   <script src="http://localhost:35729/livereload.js" data-build="exclude"></script>
 
   <!-- JS from Bower Components -->
+  <!--
   <script src="bower_components/less.js/dist/less-1.6.2.js" data-build="exclude"></script>
   <script src="bower_components/jquery/jquery.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <script src="bower_components/underscore/underscore.js"></script>
   <script src="bower_components/moment/moment.js"></script>
+-->
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="bower_components/angular-animate/angular-animate.js"></script>
@@ -35,7 +68,7 @@
 
   <div>
     <div id="content" class="container">
-      <h3><img src="img/1.png" />Welcome to Yummy</h3>
+      <h1><img src="img/dish-64x64.png" />Welcome to Yummy</h1>
 	  <a href="#/recipes">Show all Dishes</a> |
 	  <a href="#/home">Stay home</a>
 

@@ -1,45 +1,69 @@
 <div class="col-md-12" ng-controller="RecipesCtrl">
 
 	<h3>My Dishes</h3>
-	<form name="recipeForm" novalidate>
+	<!--<form name="recipeForm" novalidate> -->
+	<div class="alert alert-info">
 		<p ng-bind="msg"></p>
-		<!--
-		checkout https://scotch.io/tutorials/sort-and-filter-a-table-using-angular -->
-		<table class="table table-bordered table-striped">
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Ingredients</th>
-					<th>Weblink</th>
-					<th>Stars</th>
-					<th>Action</th>
+	</div>
+	<!--	checkout https://scotch.io/tutorials/sort-and-filter-a-table-using-angular -->
+
+	<form>
+		<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+				<input type="text" class="form-control" placeholder="Search Ingredients" ng-model="searchIngredients">
+
+			</div>
+		</div>
+	</form>
+
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>
+					<a ng-click="sortType = 'name'; sortReverse = !sortReverse">
+						Dish Name
+						<span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+						<span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+					</a>
+				</th>
+				<th>Ingredients</th>
+				<th>Weblink</th>
+				<th>
+					<a ng-click="sortType = 'rating'; sortReverse = !sortReverse">
+						Rating
+						<span ng-show="sortType == 'rating' && !sortReverse" class="fa fa-caret-down"></span>
+						<span ng-show="sortType == 'rating' && sortReverse" class="fa fa-caret-up"></span>
+					</a>
+				</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="recipe in recipes  | orderBy:sortType:sortReverse | filter:searchIngredients">
+				<td ng-bind="recipe.name"></td>
+				<td ng-bind="recipe.ingredients"></td>
+				<td ng-bind="recipe.url"></td>
+				<td ng-bind="recipe.rating"></td>
+				<td><button
+					ng-click="removeRecipe(recipe)" >Remove</button></td>
 				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="recipe in recipes">
-					<td ng-bind="recipe.name"></td>
-					<td ng-bind="recipe.ingredients"></td>
-					<td
-					ng-bind="recipe.rating"></td>
-					<td ng-bind="recipe.url"></td>
-					<td><button
-						ng-click="removeRecipe(recipe)" >Remove</button></td>
-					</tr>
-				</tbody>
-			</table>
-			<br/>
-			<br/>
+			</tbody>
+		</table>
+		<br/>
+		<br/>
 
-			<input type="text" ng-model="recipe.name" size="50" placeholder="Name for new	dish" pattern="\w{3}"></input><br />
-			<input type="text"
-			ng-model="recipe.ingredients" size="50" placeholder="1st ingredient for new dish"></input><br />
-			<input type="text" ng-model="recipe.url" size="50" placeholder="URL to share"></input><br />
-			<div class="star-rating"
-			star-rating rating-value="recipe.rating" data-max="5"
-			on-rating-selected="rateFunction(rating)"></div>
+		<input type="text" ng-model="recipe.name" size="50" placeholder="Name for new	dish" pattern="\w{3}"></input><br />
+		<input type="text"
+		ng-model="recipe.ingredients" size="50" placeholder="1st ingredient for new dish"></input><br />
+		<input type="text" ng-model="recipe.url" size="50" placeholder="URL to share"></input><br />
+		<div class="star-rating"
+		star-rating rating-value="recipe.rating" data-max="5"
+		on-rating-selected="rateFunction(rating)"></div>
 
-			<button ng-click="saveRecipe(recipe)" >Save new Dish</button>
-			<pre ng-bind="recipes|json" ></pre> 
-		</form>
+		<button ng-click="saveRecipe(recipe)" >Save new Dish</button>
+		<!--<pre ng-bind="recipes|json" ></pre>  -->
+		<!--</form> -->
 
 	</div>

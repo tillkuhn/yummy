@@ -4,6 +4,11 @@ angular.module('yummy').factory('Recipe', function ($mongolabResourceHttp) {
 });
 
 angular.module('yummy').controller('RecipesCtrl', function ($scope, Recipe) {
+
+	$scope.sortType     = 'name'; // set the default sort type
+	$scope.sortReverse  = true;  // set the default sort order
+	$scope.searchFish   = '';     // set the default search/filter term
+
 	$scope.msg = "Loading all dishes from DB";
 	$scope.recipe = new Recipe(); // for new entries
 	$scope.recipe.rating = 3;
