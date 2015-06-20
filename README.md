@@ -20,4 +20,5 @@ Todos
 * Make it look nice
 * Add flavour :sparkling_heart:
 * Switch to https://github.com/pkozlowski-opensource/angularjs-mongolab as pkozlowski-opensource / angularjs-mongolab-depreciated is depreacted
+* Check out https://david-dm.org/ for dependencies check
 * Deploy somewhere (Heroku) http://cloud.dzone.com/articles/how-deploy-angularjs-app, http://www.sitepoint.com/deploying-yeomanangular-app-heroku/
