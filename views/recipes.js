@@ -49,6 +49,13 @@ angular.module('yummy').controller('RecipesCtrl', function ($scope, Recipe) {
 		});
 	};
 
+	$scope.updateRating = function(recipe) {
+		recipe.$saveOrUpdate().then(function (data) {
+			var resultPromise = data;
+			$scope.msg = recipe.name + " rating updated with " + recipe.rating + " stars";
+		});
+	};
+
 	$scope.rateFunction = function(rating) {
 		console.log("Rating selected: " + rating);
 	};
