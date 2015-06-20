@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="yummy">
 <head>
-  <title></title>
+  <title>Yummy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="utf-8">
   <link href="app.less" type="text/css" rel="stylesheet/less">
@@ -29,16 +29,16 @@
   <!-- Main App JS -->
   <script src="app.js"></script>
   <!-- see https://github.com/pkozlowski-opensource/angularjs-mongolab -->
-  <script  src="vendor/mongolab.js"></script>
+  <script src="vendor/mongolab.js"></script>
   <script src="views/recipes.js"></script>
   <!-- Add New Component JS Above -->
 
   <div>
     <div id="content" class="container">
       <h3><img src="img/1.png" />Welcome to Yummy</h3>
-	  <a href="#/recipes">Show all Dishes</a> | 
+	  <a href="#/recipes">Show all Dishes</a> |
 	  <a href="#/home">Stay home</a>
-	  
+
       <div class="row">
         <div ng-view>
         </div>

@@ -1,28 +1,45 @@
 <div class="col-md-12" ng-controller="RecipesCtrl">
 
-<h3>My Dishes</h3>
-<p ng-bind="msg"></p>
-<table>
-	<tr>
-		<th>Name</th>
-		<th>Ingredients</th>
-		<th>Weblink</th>
-		<th>Action</th>
-	</tr>
-	<tr ng-repeat="recipe in recipes">
-		<td ng-bind="recipe.name"></td>
-		<td ng-bind="recipe.ingredients"></td>
-		<td ng-bind="recipe.url"></td>
-		<td><button ng-click="removeRecipe(recipe)" >Remove</button></td>
-	</tr>
-</table>
-<br/>
-<br/>
-<form name="recipeForm" novalidate>
-	<input type="text" ng-model="recipe.name" size="50" placeholder="Name for new recipe" pattern="\w{3}"></input><br />
-	<input type="text" ng-model="recipe.ingredients" size="50" placeholder="1st ingredient for new recipe"></input><br />
-	<input type="text" ng-model="recipe.url" size="50" placeholder="URL to share"></input><br />
-	<button ng-click="saveRecipe(recipe)" >Save new Dish</button>
-</form>
+	<h3>My Dishes</h3>
+	<form name="recipeForm" novalidate>
+		<p ng-bind="msg"></p>
+		<!--
+		checkout https://scotch.io/tutorials/sort-and-filter-a-table-using-angular -->
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Ingredients</th>
+					<th>Weblink</th>
+					<th>Stars</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="recipe in recipes">
+					<td ng-bind="recipe.name"></td>
+					<td ng-bind="recipe.ingredients"></td>
+					<td
+					ng-bind="recipe.rating"></td>
+					<td ng-bind="recipe.url"></td>
+					<td><button
+						ng-click="removeRecipe(recipe)" >Remove</button></td>
+					</tr>
+				</tbody>
+			</table>
+			<br/>
+			<br/>
 
-</div>
+			<input type="text" ng-model="recipe.name" size="50" placeholder="Name for new	dish" pattern="\w{3}"></input><br />
+			<input type="text"
+			ng-model="recipe.ingredients" size="50" placeholder="1st ingredient for new dish"></input><br />
+			<input type="text" ng-model="recipe.url" size="50" placeholder="URL to share"></input><br />
+			<div class="star-rating"
+			star-rating rating-value="recipe.rating" data-max="5"
+			on-rating-selected="rateFunction(rating)"></div>
+
+			<button ng-click="saveRecipe(recipe)" >Save new Dish</button>
+			<!--<pre ng-bind="recipes|json" ></pre> -->
+		</form>
+
+	</div>
