@@ -1,4 +1,4 @@
-yummy [![Build Status](https://travis-ci.org/tillkuhn/yummy.svg?branch=master)](https://travis-ci.org/tillkuhn/yummy)[![Dependencies](https://david-dm.org/tillkuhn/yummy.svg)](https://david-dm.org/tillkuhn/yummy#info=dependencies&view=table)
+yummy [![Build Status](https://travis-ci.org/tillkuhn/yummy.svg?branch=master)](https://travis-ci.org/tillkuhn/yummy) [![Dependencies](https://david-dm.org/tillkuhn/yummy.svg)](https://david-dm.org/tillkuhn/yummy#info=dependencies&view=table)
 =====
 
 About
