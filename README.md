@@ -1,4 +1,4 @@
-yummy [![Build Status](https://travis-ci.org/tillkuhn/yummy.svg?branch=master)](https://travis-ci.org/tillkuhn/visualCaptcha-java-rest) 
+yummy [![Build Status](https://travis-ci.org/tillkuhn/yummy.svg?branch=master)](https://travis-ci.org/tillkuhn/yummy) 
 =====
 
 About
