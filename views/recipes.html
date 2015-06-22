@@ -47,14 +47,15 @@
 				<td ng-bind="recipe.ingredients"></td>
 				<td >
 					<a ng-href="{{recipe.url}}" ng-show="recipe.url" target="show">Show</a>
+					<a ng-href="#/dishes/{{recipe.$id()}}"  >Details</a>
 				</td>
 				<td >
 					<div class="star-rating"
 					star-rating rating-value="recipe.rating" data-max="5"
 					on-rating-selected="updateRating(recipe)"></div>
 				</td>
-				<td><button
-					ng-click="removeRecipe(recipe)" >Remove</button></td>
+				<td>
+					<button ng-click="removeRecipe(recipe)" >View</button>
 				</tr>
 			</tbody>
 			<tfoot>

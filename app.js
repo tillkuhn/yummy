@@ -4,6 +4,7 @@ angular.module('yummy').config(function($routeProvider) {
 
     $routeProvider.
     when('/recipes',{templateUrl: 'views/recipes.html'}).
+    when('/dishes/:id',{templateUrl: 'views/dish.html',controller:"DishDetailCtrl"}).
     when('/home',{templateUrl: 'views/home.html'}).
     /* Add New Routes Above */
     otherwise({redirectTo:'/recipes'});

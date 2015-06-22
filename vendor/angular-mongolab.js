@@ -1,3 +1,4 @@
+/* see https://github.com/pkozlowski-opensource/angularjs-mongolab */
 angular.module('mongolabResourceHttp', [])
     .factory('$mongolabResourceHttp', ['MONGOLAB_CONFIG', '$http', '$q', function (MONGOLAB_CONFIG, $http, $q) {
 
