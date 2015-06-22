@@ -14,7 +14,6 @@ angular.module('yummy').controller('RecipesCtrl', function ($scope, Recipe) {
 	$scope.recipe.rating = 3;
 	$scope.recipes = [];
 	// https://api.mongolab.com/api/1/databases/yummy/collections/recipes?apiKey=gexKhnbdwA0fTjVkU5HwZJ8WHkYL6pQd
-	//$scope.recipes = Recipe.query();
 
 	$scope.overview = function() {
 		Recipe.all().then(function(recipes){
@@ -31,6 +30,9 @@ angular.module('yummy').controller('RecipesCtrl', function ($scope, Recipe) {
 		var resultPromise;
 		if (recipe.ingredients && typeof recipe.ingredients === 'string') {
 			recipe.ingredients = recipe.ingredients.split(/[,]+/);
+		}
+		if (!recipe.$id()) {
+			recipe.created = new Date();
 		}
 		recipe.$saveOrUpdate().then(function (data) {
 			resultPromise = data;

@@ -42,7 +42,8 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="recipe in recipes  | orderBy:sortType:sortReverse | filter:searchIngredients">
-				<td>	<input type="text" ng-model="recipe.name" ng-blur="saveRecipe(recipe)" size="42"/></td>
+				<!--td>	<input type="text" ng-model="recipe.name" ng-blur="saveRecipe(recipe)" size="42"/></td> -->
+				<td ng-bind="recipe.name"></td>
 				<td ng-bind="recipe.ingredients"></td>
 				<td >
 					<a ng-href="{{recipe.url}}" ng-show="recipe.url" target="show">Show</a>

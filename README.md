@@ -19,5 +19,5 @@ Todos
 ----
 * Make it look nice
 * Add flavour :sparkling_heart:
-* Check out https://david-dm.org/ for dependencies check
+* Ceckout https://github.com/mbenford/ngTagsInput
 * Deploy somewhere (Heroku) http://cloud.dzone.com/articles/how-deploy-angularjs-app, http://www.sitepoint.com/deploying-yeomanangular-app-heroku/
