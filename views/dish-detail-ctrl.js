@@ -1,4 +1,4 @@
-angular.module('yummy').controller('DishDetailCtrl', function ($scope, $location,$log, $routeParams, DEFAULT_ROUTE, Dish, Tag ) {
+angular.module('yummy').controller('DishDetailCtrl', function ($scope, $location, $log, $q,$routeParams, DEFAULT_ROUTE, Dish, Tag ) {
 
     var dishId = $routeParams['id'];
 
@@ -6,9 +6,18 @@ angular.module('yummy').controller('DishDetailCtrl', function ($scope, $location
     $scope.msg = null;
 
     $scope.loadTags = function(query) {
-        $log.debug(query);
-        return Tag.all();
-        //return $http.get('/tags?query=' + query);
+
+        var deferred = $q.defer();
+        Tag.all().then(function(data) {
+            var results = [];
+            angular.forEach(data, function(element) {
+                if (element.text.indexOf(query) > -1) {
+                    results.push(element);
+                }
+            });
+            deferred.resolve(results);
+        });
+        return deferred.promise;
     };
 
 
