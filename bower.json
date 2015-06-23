@@ -1,6 +1,6 @@
 {
   "name": "yummy",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "index.html",
   "ignore": [
     "**/.*",
@@ -8,9 +8,7 @@
     "bower_components"
   ],
   "dependencies": {
-    "jquery": "~2.0",
-    "underscore": "~1.5",
-    "bootstrap": "~3.0",
+    "bootstrap": "~3.2",
     "angular": "~1.2",
     "angular-route": "~1.2",
     "angular-animate": "~1.2",
@@ -19,8 +17,6 @@
     "angular-mocks": "~1.2",
     "angular-ui-utils": "~0.1",
     "angular-bootstrap": "~0.9",
-    "moment": "~2.5",
-    "less.js": "~1.6",
-    "font-awesome": "~4.0"
+    "font-awesome": "~4.2"
   }
 }

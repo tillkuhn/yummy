@@ -1,4 +1,4 @@
-describe('RecipesCtrl', function() {
+describe('DishOverviewCtrl', function() {
 
 	beforeEach(module('yummy'));
 

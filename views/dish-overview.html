@@ -1,7 +1,7 @@
 <div class="col-md-12">
 
 	<h3>My Dishes</h3>
-	<!--<form name="recipeForm" novalidate> -->
+	<!--<form name="dishForm" novalidate> -->
 	<div class="alert alert-info">
 		<p ng-bind="msg"></p>
 	</div>
@@ -37,49 +37,44 @@
 						<span ng-show="sortType == 'rating' && sortReverse" class="fa fa-caret-up"></span>
 					</a>
 				</th>
-				<th>Action</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="recipe in recipes  | orderBy:sortType:sortReverse | filter:searchIngredients">
-				<!--td>	<input type="text" ng-model="recipe.name" ng-blur="saveRecipe(recipe)" size="42"/></td> -->
+			<tr ng-repeat="dish in dishes  | orderBy:sortType:sortReverse | filter:searchIngredients">
+				<!--td>	<input type="text" ng-model="dish.name" ng-blur="saveRecipe(dish)" size="42"/></td> -->
 				<td>
-                    <a ng-href="#/dishes/{{recipe.$id()}}" ><span ng-bind="recipe.name"></span></a>
+                    <a ng-href="#/dishes/{{dish.$id()}}" ><span ng-bind="dish.name"></span></a>
                 </td>
-				<td ng-bind="recipe.ingredients"></td>
+				<td ng-bind="dish.ingredients"></td>
 				<td >
-					<a ng-href="{{recipe.url}}" ng-show="recipe.url" target="show">Show</a>
+					<a ng-href="{{dish.url}}" ng-show="dish.url" target="show">Show</a>
 				</td>
 				<td >
-					<div class="star-rating"
-					star-rating rating-value="recipe.rating" data-max="5"
-					on-rating-selected="updateRating(recipe)"></div>
+					<div class="star-rating" star-rating rating-value="dish.rating" data-max="5" ></div>
 				</td>
                 <!-- Actions -->
-				<td>
-					<button ng-click="removeRecipe(recipe)" >Remove</button>
-				</tr>
 			</tbody>
 			<tfoot>
 				<tr>
-					<td><input type="text" ng-model="recipe.name" size="42" placeholder="Enter name of new dish"  ng-required /></input></td>
+					<td><input type="text" ng-model="dish.name" size="42" placeholder="Enter name of new dish"  ng-required /></input></td>
 					<td><input type="text"
-					ng-model="recipe.ingredients"  placeholder="Ingredients (comma separated)"  ng-required/></input></td>
-					<td><input type="text" ng-model="recipe.url" size="4" placeholder="URL"></input></td>
-					<td><div class="star-rating"
-					star-rating rating-value="recipe.rating" data-max="5"
-					on-rating-selected="rateFunction(rating)"></div></td>
-
-					<td><button ng-click="saveRecipe(recipe)" >Save new</button></td>
+					ng-model="dish.ingredients"  placeholder="Ingredients (comma separated)"  ng-required/></input></td>
+					<td><input type="text" ng-model="dish.url" size="4" placeholder="URL"></input></td>
+					<td>
+                        <div class="star-rating" star-rating rating-value="dish.rating" data-max="5"
+					        on-rating-selected="rateFunction(rating)"></div>
+                    </td>
 
 				</tr>
 			</tfoot>
 		</table>
 		<br/>
-		<br/>
+        <button ng-click="add()" type="submit" class="btn btn-primary">Add new dish</button>
+
+    <br/>
 
 		<input type="checkbox" ng-model="debug"> Debug
-		<pre ng-bind="recipes|json"  ng-show="debug"></pre>
+		<pre ng-bind="dishes|json"  ng-show="debug"></pre>
 		<!--</form> -->
 
 	</div>

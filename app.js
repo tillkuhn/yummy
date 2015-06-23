@@ -1,21 +1,29 @@
-angular.module('yummy', ['ui.bootstrap','ui.utils','ngRoute','ngAnimate','mongolabResourceHttp']);
+angular.module('yummy', ['ui.bootstrap', 'ui.utils', 'ngRoute', 'ngAnimate', 'mongolabResourceHttp']);
 
-angular.module('yummy').config(function($routeProvider) {
+angular.module('yummy').config(function ($routeProvider) {
 
     $routeProvider.
-    when('/dishes',{templateUrl: 'views/dishes.html',controller:"DishOverviewCtrl"}).
-    when('/dishes/:id',{templateUrl: 'views/dish.html',controller:"DishDetailCtrl"}).
-    when('/settings',{templateUrl: 'views/setting.html',controller:"SettingCtrl"}).
-    /* Add New Routes Above */
-    otherwise({redirectTo:'/dishes'});
+        when('/dishes', {templateUrl: 'views/dish-overview.html', controller: "DishOverviewCtrl"}).
+        when('/dishes/:id', {templateUrl: 'views/dish-detail.html', controller: "DishDetailCtrl"}).
+        when('/settings', {templateUrl: 'views/setting.html', controller: "SettingCtrl"}).
+        /* Add New Routes Above */
+        otherwise({redirectTo: '/dishes'});
 
 });
+// Useful constants
+angular.module('yummy').constant('MONGOLAB_CONFIG', {API_KEY: 'gexKhnbdwA0fTjVkU5HwZJ8WHkYL6pQd', DB_NAME: 'yummy'});
+angular.module('yummy').constant('DEFAULT_ROUTE', "/dishes");
 
-angular.module('yummy').constant('MONGOLAB_CONFIG',{API_KEY:'gexKhnbdwA0fTjVkU5HwZJ8WHkYL6pQd', DB_NAME:'yummy'});
+// Configure mongolab resources
+angular.module('yummy').factory('Dish', function ($mongolabResourceHttp) {
+    return $mongolabResourceHttp('dishes');
+});
 
-angular.module('yummy').run(function($rootScope) {
 
-    $rootScope.safeApply = function(fn) {
+// Main run block
+angular.module('yummy').run(function ($rootScope) {
+
+    $rootScope.safeApply = function (fn) {
         var phase = $rootScope.$$phase;
         if (phase === '$apply' || phase === '$digest') {
             if (fn && (typeof(fn) === 'function')) {
@@ -28,41 +36,41 @@ angular.module('yummy').run(function($rootScope) {
 
 });
 
-angular.module('yummy').directive('starRating',function() {
-return {
-restrict : 'A',
-template : '<ul class="rating"><li ng-repeat="star in stars" ng-class="star" ng-click="toggle($index)"><i class="fa fa-star-o"></i></li></ul>',
+angular.module('yummy').directive('starRating', function () {
+        return {
+            restrict: 'A',
+            template: '<ul class="rating"><li ng-repeat="star in stars" ng-class="star" ng-click="toggle($index)"><i class="fa fa-star-o"></i></li></ul>',
 
-scope : {
- ratingValue : '=',
- max : '=',
- onRatingSelected : '&'
-},
-link : function(scope, elem, attrs) {
- var updateStars = function() {
-  scope.stars = [];
-  for ( var i = 0; i < scope.max; i++) {
-   scope.stars.push({
-    filled : i < scope.ratingValue
-   });
-  }
- };
+            scope: {
+                ratingValue: '=',
+                max: '=',
+                onRatingSelected: '&'
+            },
+            link: function (scope, elem, attrs) {
+                var updateStars = function () {
+                    scope.stars = [];
+                    for (var i = 0; i < scope.max; i++) {
+                        scope.stars.push({
+                            filled: i < scope.ratingValue
+                        });
+                    }
+                };
 
- scope.toggle = function(index) {
-  scope.ratingValue = index + 1;
-  scope.onRatingSelected({
-   rating : index + 1
-  });
- };
+                scope.toggle = function (index) {
+                    scope.ratingValue = index + 1;
+                    scope.onRatingSelected({
+                        rating: index + 1
+                    });
+                };
 
- scope.$watch('ratingValue',
-  function(oldVal, newVal) {
-   if (newVal) {
-    updateStars();
-   }
-  }
- );
-}
-};
-}
+                scope.$watch('ratingValue',
+                    function (oldVal, newVal) {
+                        if (newVal) {
+                            updateStars();
+                        }
+                    }
+                );
+            }
+        };
+    }
 );
