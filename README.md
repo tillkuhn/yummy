@@ -19,7 +19,7 @@ Nothing special here ...
 
 API Reference
 ------
-Internally this project is heavily based on [angularjs-mongolab](https://github.com/pkozlowski-opensource/angularjs-mongolab) and [mongolab REST API](https://mongolab.com/), check the information on their pages for details.
+Internally this project is heavily based on [angularjs-mongolab](https://github.com/pkozlowski-opensource/angularjs-mongolab) and [mongolab REST API](http://docs.mongolab.com/data-api/), check the information on their pages for details.
 
 Tests
 -----

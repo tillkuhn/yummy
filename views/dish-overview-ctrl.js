@@ -6,7 +6,7 @@ angular.module('yummy').factory('Recipe', function ($mongolabResourceHttp) {
 angular.module('yummy').controller('DishOverviewCtrl', function ($scope, Recipe) {
 
 	$scope.sortType     = 'name'; // set the default sort type
-	$scope.sortReverse  = true;  // set the default sort order
+	$scope.sortReverse  = false;  // set the default sort order
 	$scope.searchIngredients   = '';     // set the default search/filter term
 
 	$scope.msg = "Loading all dishes from DB";
@@ -16,7 +16,8 @@ angular.module('yummy').controller('DishOverviewCtrl', function ($scope, Recipe)
 	// https://api.mongolab.com/api/1/databases/yummy/collections/recipes?apiKey=gexKhnbdwA0fTjVkU5HwZJ8WHkYL6pQd
 
 	$scope.overview = function() {
-		Recipe.all().then(function(recipes){
+        var options = { "fields" : { "name":1,"ingredients":1,"rating":1,"ingredients" : 1,"url":1}, "sort" : { "name": 1}, "limit":100};
+		Recipe.all(options).then(function(recipes){
 			$scope.recipes  = recipes;
 		});
 
