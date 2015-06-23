@@ -1,131 +1,136 @@
+<div class="alert alert-info">
+    <p ng-bind="msg"></p>
+</div>
 
+<div class="row">
+    <div class="col-md-4">
+        <img src="{{dish.imageUrl}}" ng-show="dish.imageUrl" width="300"></img>
+    </div>
+    <div class="col-md-8">
+        <h2 ng-bind="dish.name"></h2>
 
-    <div class="alert alert-info">
-        <p ng-bind="msg"></p>
+        <h3 ng-bind="dish.authenticName"></h3>
+        Times served: <span ng-bind="dish.timesServed"></span> <br/>
+        Last served: <span ng-bind="dish.lastServedDate"></span>
+    </div>
+</div>
+
+<form name="dishForm">
+    <div class="control-group">
+        <label class="control-label" for="name">Name</label>
+
+        <div class="controls">
+            <input name="name" ng-model="dish.name" type="text" placeholder="Name"
+                   class="input-xlarge" required="" size="60"
+                   ng-class="{error: dish.name.$invalid && !dish.name.$pristine}"/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="name">Auhtentic Name</label>
+
+        <div class="controls">
+            <input name="authenticName" ng-model="dish.authenticName" type="text" placeholder="Authentic Name"
+                   class="input-xlarge" size="60"
+                   ng-class="{error: dish.authenticName.$invalid && !dish.authenticName.$pristine}"/>
+        </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-4">
-            <img src="{{dish.imageUrl}}" ng-show="dish.imageUrl" width="300"></img>
-        </div>
-        <div class="col-md-8">
-            <h2 ng-bind="dish.name"></h2>
-            <h3 ng-bind="dish.authenticName"></h3>
-            Times served: <span ng-bind="dish.timesServed"></span> <br />
-            Last served: <span ng-bind="dish.lastServedDate"></span>
+    <div class="control-group" ng-class="{error: dish.ingredients.$invalid && !user.ingredients.$pristine}">
+        <label class="control-label" for="ingredients">Ingredients</label>
+
+        <div class="controls">
+            <input name="ingredients" ng-model="dish.ingredients" placeholder="ingredients"
+                   class="input-xlarge" size="60"/>
         </div>
     </div>
 
-    <form name="dishForm" >
-        <div class="control-group">
-            <label class="control-label" for="name">Name</label>
+    <div class="control-group">
+        <label class="control-label" for="url">Link to Recipe</label>
 
-            <div class="controls">
-                <input name="name" ng-model="dish.name" type="text" placeholder="Name"
-                       class="input-xlarge" required="" size="60"
-                       ng-class="{error: dish.name.$invalid && !dish.name.$pristine}"/>
-            </div>
+        <div class="controls">
+            <input name="url" ng-model="dish.url" placeholder="url" class="input-xlarge" type="url" size="60"/>
         </div>
-        <div class="control-group">
-            <label class="control-label" for="name">Auhtentic Name</label>
+    </div>
 
-            <div class="controls">
-                <input name="authenticName" ng-model="dish.authenticName" type="text" placeholder="Authentic Name"
-                       class="input-xlarge" size="60"
-                       ng-class="{error: dish.authenticName.$invalid && !dish.authenticName.$pristine}"/>
-            </div>
+    <!-- URL to picture -->
+    <div class="control-group">
+        <label class="control-label" for="url">URL to Picture</label>
+
+        <div role="alert">
+            <span class="error" ng-show="dishForm.imageUrl.$error.required">Required!</span>
+            <span class="error" ng-show="dishForm.imageUrl.$error.url">Not valid url!</span>
         </div>
-
-        <div class="control-group" ng-class="{error: dish.ingredients.$invalid && !user.ingredients.$pristine}">
-            <label class="control-label" for="ingredients">Ingredients</label>
-
-            <div class="controls">
-                <input name="ingredients" ng-model="dish.ingredients" placeholder="ingredients"
-                       class="input-xlarge"  size="60"/>
-            </div>
+        <div class="controls">
+            <input name="imageUrl" ng-model="dish.imageUrl" placeholder="url" class="input-xlarge" type="url"
+                   size="60"/>
         </div>
+    </div>
 
-        <div class="control-group">
-            <label class="control-label" for="url">Link to Recipe</label>
-            <div class="controls">
-                <input name="url" ng-model="dish.url" placeholder="url" class="input-xlarge"  type="url" size="60"/>
-            </div>
+    <div class="control-group">
+        <label class="control-label" for="url"><span class="glyphicon glyphicon-thumbs-up"></span> Rating</label>
+
+        <!-- on-rating-selected="rateFunction(rating)" -->
+        <div class="star-rating" star-rating rating-value="dish.rating" data-max="5"></div>
+        ({{dish.rating}})
+
+    </div>
+
+    <div>
+        <button ng-click="save(dish)" class="btn btn-primary" ng-show="dishId !== 'new' "
+                ng-disabled="dishForm.$invalid">Update
+        </button>
+        <!--<button ng-click="save(dish)" class="btn btn-primary" ng-show="dishId === 'new' ">Add</button> -->
+        <!--<button ng-click="save()" ng-if="user.id" ng-disabled="user.$invalid || !user.tnc" class="btn btn-primary"><i class="icon-white icon-plus"></i> Save</button> -->
+        <button ng-click="justServed(dish)" class="btn btn-primary">Just Served</button>
+        <button ng-click="remove(dish)" class="btn btn-primary">Remove Dish</button>
+        <button ng-click="cancel()" class="btn btn-primary">Cancel</button>
+        <button ng-click="overview()" class="btn btn-primary">Overview</button>
+    </div>
+    <!--
+
+    <div class="control-group">
+        <label class="control-label" for="country">Country</label>
+
+        <div class="controls">
+            <select class="input-xlarge" id="country" ng-model="user.country" ng-click="select_change($event)"
+                    ng-options="c.id as c.name for c in country_array">
+            </select>
         </div>
+    </div>
 
-        <!-- URL to picture -->
-        <div class="control-group">
-            <label class="control-label" for="url">URL to Picture</label>
-            <div role="alert">
-                <span class="error" ng-show="dishForm.imageUrl.$error.required">Required!</span>
-                <span class="error" ng-show="dishForm.imageUrl.$error.url">Not valid url!</span>
-            </div>
-            <div class="controls">
-                <input name="imageUrl" ng-model="dish.imageUrl" placeholder="url" class="input-xlarge" type="url"  size="60"/>
-            </div>
+    <div class="control-group">
+        <label class="control-label" for="state">State</label>
+
+        <div class="controls">
+            <select class="input-xlarge" id="state" ng-model="user.state"
+                    ng-options="s.id as s.name for s in filteredArray | filter:{country_id: user.country}">
+            </select>
         </div>
+    </div>
 
-        <div class="control-group">
-            <label class="control-label" for="url"><span class="glyphicon glyphicon-thumbs-up"></span> Rating</label>
+    <div class="control-group">
+        <label class="control-label" for="designation">Designation</label>
 
-            <!-- on-rating-selected="rateFunction(rating)" -->
-            <div class="star-rating" star-rating rating-value="dish.rating" data-max="5" ></div>({{dish.rating}})
-
+        <div class="controls">
+            <select id="designation" ng-model="user.designation" name="designation" class="input-xlarge"
+                    ng-options="opt.name as opt.name for opt in designations"></select>
         </div>
+    </div>
 
-        <div>
-            <button ng-click="save(dish)" class="btn btn-primary" ng-show="dishId !== 'new' " ng-disabled="dishForm.$invalid" >Update</button>
-            <!--<button ng-click="save(dish)" class="btn btn-primary" ng-show="dishId === 'new' ">Add</button> -->
-            <!--<button ng-click="save()" ng-if="user.id" ng-disabled="user.$invalid || !user.tnc" class="btn btn-primary"><i class="icon-white icon-plus"></i> Save</button> -->
-            <button ng-click="justServed(dish)" class="btn btn-primary">Just Served</button>
-            <button ng-click="remove(dish)" class="btn btn-primary">Remove Dish</button>
-            <button ng-click="cancel()" class="btn btn-primary">Cancel</button>
-            <button ng-click="overview()" class="btn btn-primary">Overview</button>
+    <div class="control-group">
+        <label class="control-label" for="tnc">Term &amp; Condition</label>
+
+        <div class="controls">
+            <label class="checkbox inline" for="tnc">
+                <input name="tnc" id="tnc" type="checkbox" ng-model="user.tnc" required/>Accept
+            </label>
         </div>
-        <!--
+    </div>
+    -->
 
-        <div class="control-group">
-            <label class="control-label" for="country">Country</label>
+</form>
 
-            <div class="controls">
-                <select class="input-xlarge" id="country" ng-model="user.country" ng-click="select_change($event)"
-                        ng-options="c.id as c.name for c in country_array">
-                </select>
-            </div>
-        </div>
-
-        <div class="control-group">
-            <label class="control-label" for="state">State</label>
-
-            <div class="controls">
-                <select class="input-xlarge" id="state" ng-model="user.state"
-                        ng-options="s.id as s.name for s in filteredArray | filter:{country_id: user.country}">
-                </select>
-            </div>
-        </div>
-
-        <div class="control-group">
-            <label class="control-label" for="designation">Designation</label>
-
-            <div class="controls">
-                <select id="designation" ng-model="user.designation" name="designation" class="input-xlarge"
-                        ng-options="opt.name as opt.name for opt in designations"></select>
-            </div>
-        </div>
-
-        <div class="control-group">
-            <label class="control-label" for="tnc">Term &amp; Condition</label>
-
-            <div class="controls">
-                <label class="checkbox inline" for="tnc">
-                    <input name="tnc" id="tnc" type="checkbox" ng-model="user.tnc" required/>Accept
-                </label>
-            </div>
-        </div>
-        -->
-
-    </form>
-
-    <br/>
-    <input type="checkbox" ng-model="debug"> Debug
-    <pre ng-bind="dish|json" ng-show="debug"></pre>
-    <!--</form> -->
+<br/>
+<input type="checkbox" ng-model="debug"> Debug
+<pre ng-bind="dish|json" ng-show="debug"></pre>
+<!--</form> -->

@@ -1,6 +1,6 @@
 {
   "name": "yummy",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "main": "index.html",
   "ignore": [
     "**/.*",
@@ -17,6 +17,7 @@
     "angular-mocks": "~1.2",
     "angular-ui-utils": "~0.1",
     "angular-bootstrap": "~0.9",
+    "angular-cookie": "~4.0",
     "font-awesome": "~4.2"
   }
 }

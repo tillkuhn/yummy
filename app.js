@@ -21,7 +21,7 @@ angular.module('yummy').factory('Dish', function ($mongolabResourceHttp) {
 
 
 // Main run block
-angular.module('yummy').run(function ($rootScope) {
+angular.module('yummy').run(function ($rootScope, $log) {
 
     $rootScope.safeApply = function (fn) {
         var phase = $rootScope.$$phase;
@@ -33,6 +33,9 @@ angular.module('yummy').run(function ($rootScope) {
             this.$apply(fn);
         }
     };
+
+    $log.debug("Yummy entering run state");
+
 
 });
 
