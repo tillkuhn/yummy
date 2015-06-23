@@ -65,7 +65,7 @@ angular.module('yummy').controller('DishDetailCtrl', function ($scope, Dish, $lo
 
     $scope.imageUrl = function(dish) {
         return dish.imageUrl ? dish.imageUrl : "";
-    }
+    };
 
     /*
      $scope.updateRating = function(dish) {
