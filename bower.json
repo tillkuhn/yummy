@@ -16,7 +16,7 @@
     "angular-cookies": "~1.2",
     "angular-mocks": "~1.2",
     "angular-ui-utils": "~0.1",
-    "angular-bootstrap": "~0.9",
+    "angular-bootstrap": "~0.12",
     "angular-cookie": "~4.0",
     "font-awesome": "~4.2"
   }
