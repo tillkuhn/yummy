@@ -3,7 +3,7 @@ angular.module('yummy').factory('Recipe', function ($mongolabResourceHttp) {
 	return $mongolabResourceHttp('recipes');
 });
 
-angular.module('yummy').controller('RecipesCtrl', function ($scope, Recipe) {
+angular.module('yummy').controller('DishOverviewCtrl', function ($scope, Recipe) {
 
 	$scope.sortType     = 'name'; // set the default sort type
 	$scope.sortReverse  = true;  // set the default sort order

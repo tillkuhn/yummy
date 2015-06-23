@@ -1,83 +1,45 @@
 <!DOCTYPE html>
 <html ng-app="yummy">
 <head>
-  <title>Yummy</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta charset="utf-8">
-  <!--
-  <link href="app.less" type="text/css" rel="stylesheet/less">
--->
-<!-- CSS -->
-   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/sandstone/bootstrap.min.css">
-   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-   <style>
-       /* for star rating */
-       .rating{
-         color: #a9a9a9;
-         margin: 0;
-         padding: 0;
-       }
+    <title>Yummy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
 
-       ul.rating {
-         display: inline-block;
-       }
-
-       .rating li {
-         list-style-type: none;
-         display: inline-block;
-         padding: 1px;
-         text-align: center;
-         font-weight: bold;
-         cursor: pointer;
-       }
-
-       .rating .filled {
-         color: #21568b;
-       }   </style>
+    <!-- CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/sandstone/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
 
 </head>
 <body>
 
-  <!-- Livereload script for development only (stripped during dist build) -->
-  <script src="http://localhost:35729/livereload.js" data-build="exclude"></script>
+<!-- Livereload script for development only (stripped during dist build) -->
+<script src="http://localhost:35729/livereload.js" data-build="exclude"></script>
 
-  <!-- JS from Bower Components -->
-  <!--
-  <script src="bower_components/less.js/dist/less-1.6.2.js" data-build="exclude"></script>
-  <script src="bower_components/jquery/jquery.js"></script>
-  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-  <script src="bower_components/underscore/underscore.js"></script>
-  <script src="bower_components/moment/moment.js"></script>
--->
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="bower_components/angular-animate/angular-animate.js"></script>
-  <script src="bower_components/angular-resource/angular-resource.js"></script>
-  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-  <script src="bower_components/angular-ui-utils/ui-utils.js"></script>
-  <!-- Add New Bower Component JS Above -->
+<!-- JS from Bower Components -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/angular-ui-utils/ui-utils.js"></script>
+<!-- Add New Bower Component JS Above -->
 
 
-  <!-- Main App JS -->
-  <script src="app.js"></script>
-  <!-- see https://github.com/pkozlowski-opensource/angularjs-mongolab -->
-  <script src="vendor/angular-mongolab.js"></script>
-  <script src="views/recipes.js"></script>
-  <script src="views/dish-detail.js"></script>
-  <!-- Add New Component JS Above -->
+<!-- Main App JS -->
+<script src="app.js"></script>
+<script src="vendor/angular-mongolab.js"></script>
+<script src="views/dish-overview-ctrl.js"></script>
+<script src="views/dish-detail-ctrl.js"></script>
+<script src="views/setting-ctrl.js"></script>
+<!-- Add New Component JS Above -->
 
-  <div>
-    <div id="content" class="container">
-      <h1><img src="img/dish-64x64.png" />Welcome to Yummy</h1>
-	  <a href="#/recipes">Show all Dishes</a> |
-	  <a href="#/home">Stay home</a>
-
-      <div class="row">
-        <div ng-view>
-        </div>
-      </div>
-    </div>
-  </div>
+<div id="content" class="container">
+    <!-- header + navigation -->
+    <div ng-include="'views/header.html'"></div>
+    <!-- main view -->
+    <div ng-view></div>
+</div>
 
 </body>
 </html>

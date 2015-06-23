@@ -3,11 +3,11 @@ angular.module('yummy', ['ui.bootstrap','ui.utils','ngRoute','ngAnimate','mongol
 angular.module('yummy').config(function($routeProvider) {
 
     $routeProvider.
-    when('/recipes',{templateUrl: 'views/recipes.html'}).
+    when('/dishes',{templateUrl: 'views/dishes.html',controller:"DishOverviewCtrl"}).
     when('/dishes/:id',{templateUrl: 'views/dish.html',controller:"DishDetailCtrl"}).
-    when('/home',{templateUrl: 'views/home.html'}).
+    when('/settings',{templateUrl: 'views/setting.html',controller:"SettingCtrl"}).
     /* Add New Routes Above */
-    otherwise({redirectTo:'/recipes'});
+    otherwise({redirectTo:'/dishes'});
 
 });
 
