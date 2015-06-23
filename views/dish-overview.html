@@ -54,26 +54,13 @@
 				</td>
                 <!-- Actions -->
 			</tbody>
-			<tfoot>
-				<tr>
-					<td><input type="text" ng-model="dish.name" size="42" placeholder="Enter name of new dish"  ng-required /></input></td>
-					<td><input type="text"
-					ng-model="dish.ingredients"  placeholder="Ingredients (comma separated)"  ng-required/></input></td>
-					<td><input type="text" ng-model="dish.url" size="4" placeholder="URL"></input></td>
-					<td>
-                        <div class="star-rating" star-rating rating-value="dish.rating" data-max="5"
-					        on-rating-selected="rateFunction(rating)"></div>
-                    </td>
-
-				</tr>
-			</tfoot>
 		</table>
 		<br/>
         <button ng-click="add()" type="submit" class="btn btn-primary">Add new dish</button>
+				<input type="checkbox" ng-model="debug"> Debug
 
     <br/>
 
-		<input type="checkbox" ng-model="debug"> Debug
 		<pre ng-bind="dishes|json"  ng-show="debug"></pre>
 		<!--</form> -->
 

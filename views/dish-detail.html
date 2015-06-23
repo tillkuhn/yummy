@@ -11,7 +11,9 @@
 
         <h3 ng-bind="dish.authenticName"></h3>
         Times served: <span ng-bind="dish.timesServed"></span> <br/>
-        Last served: <span ng-bind="dish.lastServedDate"></span>
+        Last served: <span ng-bind="dish.lastServedDate"></span>  <br />
+        <!-- see http://getbootstrap.com/components/-->
+        <a ng-href="{{dish.url}}" ng-show="dish.url" target="_blank"> <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Show Recipe</a>
     </div>
 </div>
 
