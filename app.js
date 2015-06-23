@@ -1,4 +1,4 @@
-angular.module('yummy', ['ui.bootstrap', 'ui.utils', 'ngRoute', 'ngAnimate', 'mongolabResourceHttp']);
+angular.module('yummy', ['ui.bootstrap', 'ui.utils', 'ngRoute', 'ngAnimate','ngTagsInput', 'mongolabResourceHttp']);
 
 angular.module('yummy').config(function ($routeProvider) {
 
@@ -17,6 +17,10 @@ angular.module('yummy').constant('DEFAULT_ROUTE', "/dishes");
 // Configure mongolab resources
 angular.module('yummy').factory('Dish', function ($mongolabResourceHttp) {
     return $mongolabResourceHttp('dishes');
+});
+
+angular.module('yummy').factory('Tag', function ($mongolabResourceHttp) {
+    return $mongolabResourceHttp('tags');
 });
 
 

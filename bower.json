@@ -18,6 +18,7 @@
     "angular-ui-utils": "~0.1",
     "angular-bootstrap": "~0.12",
     "angular-cookie": "~4.0",
-    "font-awesome": "~4.2"
+    "font-awesome": "~4.2",
+    "ng-tags-input": "~2.3"
   }
 }

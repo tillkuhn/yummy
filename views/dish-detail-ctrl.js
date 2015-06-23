@@ -1,9 +1,16 @@
-angular.module('yummy').controller('DishDetailCtrl', function ($scope, Dish, $location, $routeParams, DEFAULT_ROUTE) {
+angular.module('yummy').controller('DishDetailCtrl', function ($scope, $location,$log, $routeParams, DEFAULT_ROUTE, Dish, Tag ) {
 
+    var dishId = $routeParams['id'];
 
     $scope.dish = null;
     $scope.msg = null;
-    var dishId = $routeParams['id'];
+
+    $scope.loadTags = function(query) {
+        $log.debug(query);
+        return Tag.all();
+        //return $http.get('/tags?query=' + query);
+    };
+
 
     // If new dish create fresg dish object, otherwhise load from DB
     if (dishId === "new") {

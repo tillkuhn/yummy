@@ -48,9 +48,17 @@
 
     <div class="control-group">
         <label class="control-label" for="url">Link to Recipe</label>
-
         <div class="controls">
             <input name="url" ng-model="dish.url" placeholder="url" class="input-xlarge" type="url" size="60"/>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="url">Tag you dish</label>
+        <div class="controls">
+            <tags-input ng-model="dish.tags">
+                <auto-complete source="loadTags($query)"></auto-complete>
+            </tags-input>
         </div>
     </div>
 
@@ -67,6 +75,7 @@
                    size="60"/>
         </div>
     </div>
+
 
     <div class="control-group">
         <label class="control-label" for="url"><span class="glyphicon glyphicon-thumbs-up"></span> Rating</label>
