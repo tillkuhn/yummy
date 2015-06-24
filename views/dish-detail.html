@@ -84,15 +84,13 @@
     </div>
 
     <div>
-        <button ng-click="save(dish)" class="btn btn-primary" ng-show="dishId !== 'new' "
-                ng-disabled="dishForm.$invalid">Update
+        <button ng-click="save(dish)" class="btn btn-primary" ng-show="dishId !== 'new' "ng-disabled="dishForm.$invalid || dishForm.$pristine">
+            <span class="glyphicon glyphicon-save"></span> Update Dish
         </button>
-        <!--<button ng-click="save(dish)" class="btn btn-primary" ng-show="dishId === 'new' ">Add</button> -->
-        <!--<button ng-click="save()" ng-if="user.id" ng-disabled="user.$invalid || !user.tnc" class="btn btn-primary"><i class="icon-white icon-plus"></i> Save</button> -->
-        <button ng-click="justServed(dish)" class="btn btn-primary">Just Served</button>
-        <button ng-click="remove(dish)" class="btn btn-primary">Remove Dish</button>
-        <button ng-click="cancel()" class="btn btn-primary">Cancel</button>
-        <button ng-click="overview()" class="btn btn-primary">Overview</button>
+        <button ng-click="justServed(dish)" class="btn btn-primary"><span class="glyphicon glyphicon-cutlery"></span> Just Served</button>
+        <button ng-click="remove(dish)" class="btn btn-primary"><span class="fa fa-trash"></span> Remove Dish</button>
+        <button ng-click="cancel()" class="btn btn-primary" ng-disabled="dishForm.$pristine"><span class="fa fa-undo"></span> Cancel Edit</button>
+        <button ng-click="overview()" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Overview</button>
     </div>
     <!--
 
