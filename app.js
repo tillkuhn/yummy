@@ -11,12 +11,11 @@ angular.module('yummy').config(function ($routeProvider) {
 
 });
 // Useful constants
-angular.module('yummy').constant('MONGOLAB_CONFIG', {API_KEY: 'gexKhnbdwA0fTjVkU5HwZJ8WHkYL6pQd', DB_NAME: 'yummy'});
 angular.module('yummy').constant('DEFAULT_ROUTE', "/dishes");
 
 
 // Main run block
-angular.module('yummy').run(function ($rootScope, $log) {
+angular.module('yummy').run(function ($rootScope, $log, $location, MONGOLAB_CONFIG) {
 
     $rootScope.safeApply = function (fn) {
         var phase = $rootScope.$$phase;
@@ -29,7 +28,12 @@ angular.module('yummy').run(function ($rootScope, $log) {
         }
     };
 
-    $log.debug("Yummy entering run state");
+    if (MONGOLAB_CONFIG.isConfigured() === false) {
+        $log.warn("yummy is not configured");
+        $location.path("/settings");
+    } else {
+        $log.debug("Yummy entering run state");
+    }
 
 
 });

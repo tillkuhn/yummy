@@ -71,15 +71,13 @@
             <span class="error" ng-show="dishForm.imageUrl.$error.url">Not valid url!</span>
         </div>
         <div class="controls">
-            <input name="imageUrl" ng-model="dish.imageUrl" placeholder="url" class="input-xlarge" type="url"
-                   size="60"/>
+            <input name="imageUrl" ng-model="dish.imageUrl" placeholder="url" class="input-xlarge" type="url" size="60"/>
         </div>
     </div>
 
 
     <div class="control-group">
         <label class="control-label" for="url"><span class="glyphicon glyphicon-thumbs-up"></span> Rating</label>
-        <!-- on-rating-selected="rateFunction(rating)" -->
         <rating ng-model="dish.rating" max="maxRating" readonly="false" ></rating>
     </div>
 
@@ -93,10 +91,8 @@
         <button ng-click="overview()" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Overview</button>
     </div>
     <!--
-
     <div class="control-group">
         <label class="control-label" for="country">Country</label>
-
         <div class="controls">
             <select class="input-xlarge" id="country" ng-model="user.country" ng-click="select_change($event)"
                     ng-options="c.id as c.name for c in country_array">
@@ -105,22 +101,12 @@
     </div>
     <div class="control-group">
         <label class="control-label" for="designation">Designation</label>
-
         <div class="controls">
             <select id="designation" ng-model="user.designation" name="designation" class="input-xlarge"
                     ng-options="opt.name as opt.name for opt in designations"></select>
         </div>
     </div>
 
-    <div class="control-group">
-        <label class="control-label" for="tnc">Term &amp; Condition</label>
-
-        <div class="controls">
-            <label class="checkbox inline" for="tnc">
-                <input name="tnc" id="tnc" type="checkbox" ng-model="user.tnc" required/>Accept
-            </label>
-        </div>
-    </div>
     -->
 
 </form>
