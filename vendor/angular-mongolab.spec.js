@@ -26,11 +26,13 @@ describe('mongolabResourceHttp', function () {
         Project = _Project_;
     }));
     beforeEach(function () {
+      if (this.addMatchers) {
         this.addMatchers({
             toHaveSamePropertiesAs: function (expected) {
                 return angular.equals(expected, this.actual);
             }
         });
+      }
     });
 
     describe('class methods', function () {
@@ -41,7 +43,8 @@ describe('mongolabResourceHttp', function () {
             });
             $httpBackend.flush();
             expect(resultPromise.length).toEqual(1);
-            expect(resultPromise[0]).toHaveSamePropertiesAs(testProject);
+            expect(angular.equals(resultPromise[0], testProject)).toBeTruthy;
+            //expect(resultPromise[0]).toHaveSamePropertiesAs(testProject);
         });
 
         it("should issue GET request with sort options", function() {
@@ -51,7 +54,7 @@ describe('mongolabResourceHttp', function () {
             });
             $httpBackend.flush();
             expect(resultPromise.length).toEqual(1);
-            expect(resultPromise[0]).toHaveSamePropertiesAs(testProject);
+            expect(angular.equals(resultPromise[0], testProject)).toBeTruthy;
         });
 
         it("should issue GET request with limit options", function() {
@@ -61,7 +64,7 @@ describe('mongolabResourceHttp', function () {
             });
             $httpBackend.flush();
             expect(resultPromise.length).toEqual(1);
-            expect(resultPromise[0]).toHaveSamePropertiesAs(testProject);
+            expect(angular.equals(resultPromise[0], testProject)).toBeTruthy;
         });
 
         it("should issue GET request with sort and limit options", function() {
@@ -71,7 +74,7 @@ describe('mongolabResourceHttp', function () {
             });
             $httpBackend.flush();
             expect(resultPromise.length).toEqual(1);
-            expect(resultPromise[0]).toHaveSamePropertiesAs(testProject);
+            expect(angular.equals(resultPromise[0], testProject)).toBeTruthy;
         });
 
         it("should issue GET all with sort options", function() {
@@ -81,7 +84,7 @@ describe('mongolabResourceHttp', function () {
             });
             $httpBackend.flush();
             expect(resultPromise.length).toEqual(1);
-            expect(resultPromise[0]).toHaveSamePropertiesAs(testProject);
+            expect(angular.equals(resultPromise[0], testProject)).toBeTruthy;
         });
 
         it("should issue GET all", function() {
@@ -91,7 +94,7 @@ describe('mongolabResourceHttp', function () {
             });
             $httpBackend.flush();
             expect(resultPromise.length).toEqual(1);
-            expect(resultPromise[0]).toHaveSamePropertiesAs(testProject);
+            expect(angular.equals(resultPromise[0], testProject)).toBeTruthy;
         });
 
         it('should issue GET request for distinct calls', function() {
@@ -109,7 +112,7 @@ describe('mongolabResourceHttp', function () {
                 resultPromise = queryResult;
             });
             $httpBackend.flush();
-            expect(resultPromise).toHaveSamePropertiesAs(testProject);
+            expect(angular.equals(resultPromise[0], testProject)).toBeTruthy;
         });
 
         it("should issue GET request and return an array for getByObjectIds", function() {
@@ -118,7 +121,7 @@ describe('mongolabResourceHttp', function () {
                 resultPromise = queryResult;
             });
             $httpBackend.flush();
-            expect(resultPromise[0]).toHaveSamePropertiesAs(testProject);
+            expect(angular.equals(resultPromise[0], testProject)).toBeTruthy;
             expect(resultPromise.length).toEqual(1);
         });
 
@@ -138,7 +141,7 @@ describe('mongolabResourceHttp', function () {
 
         var flushAndVerify = function () {
             $httpBackend.flush();
-            expect(resultPromise).toHaveSamePropertiesAs(testProject);
+            expect(angular.equals(resultPromise[0], testProject)).toBeTruthy;
         };
 
         it('should return undefined $id for new resources', function() {
