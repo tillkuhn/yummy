@@ -1,6 +1,6 @@
 angular.module('yummy').controller('DishOverviewCtrl', function ($scope, Dish, $location) {
 
-    var fields = {"name": 1, "rating": 1, "ingredients": 1, "url": 1};
+    var fields = {"name": 1, "rating": 1, "ingredients": 1, "url": 1,"tags":1};
     var limit = 100;
 
     $scope.sortType = 'name'; // set the default sort type

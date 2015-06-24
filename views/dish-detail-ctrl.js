@@ -2,6 +2,7 @@ angular.module('yummy').controller('DishDetailCtrl', function ($scope, $location
 
     var dishId = $routeParams['id'];
 
+    $scope.maxRating = 10;
     $scope.dish = null;
     $scope.msg = null;
 

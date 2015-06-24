@@ -28,7 +28,7 @@
 						<span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
 					</a>
 				</th>
-				<th>Ingredients</th>
+				<th>Tags</th>
 				<th>Link</th>
 				<th>
 					<a ng-click="sortType = 'rating'; sortReverse = !sortReverse">
@@ -39,18 +39,21 @@
 				</th>
 			</tr>
 		</thead>
+        <!-- dish rows -->
 		<tbody>
 			<tr ng-repeat="dish in dishes  | orderBy:sortType:sortReverse | filter:searchIngredients">
 				<!--td>	<input type="text" ng-model="dish.name" ng-blur="saveRecipe(dish)" size="42"/></td> -->
 				<td>
                     <a ng-href="#/dishes/{{dish.$id()}}" ><span ng-bind="dish.name"></span></a>
                 </td>
-				<td ng-bind="dish.ingredients"></td>
+				<td>
+                    <span ng-repeat="tag in dish.tags" style="background-color: yellow;margin-right: 10px">{{tag.text}}</span>
+                </td>
 				<td >
 					<a ng-href="{{dish.url}}" ng-show="dish.url" target="show">Show</a>
 				</td>
 				<td >
-					<div class="star-rating" star-rating rating-value="dish.rating" data-max="5" ></div>
+                    <span class="glyphicon glyphicon-thumbs-up" ng-bind="dish.rating"></span>
 				</td>
                 <!-- Actions -->
 			</tbody>

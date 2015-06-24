@@ -14,15 +14,6 @@ angular.module('yummy').config(function ($routeProvider) {
 angular.module('yummy').constant('MONGOLAB_CONFIG', {API_KEY: 'gexKhnbdwA0fTjVkU5HwZJ8WHkYL6pQd', DB_NAME: 'yummy'});
 angular.module('yummy').constant('DEFAULT_ROUTE', "/dishes");
 
-// Configure mongolab resources
-angular.module('yummy').factory('Dish', function ($mongolabResourceHttp) {
-    return $mongolabResourceHttp('dishes');
-});
-
-angular.module('yummy').factory('Tag', function ($mongolabResourceHttp) {
-    return $mongolabResourceHttp('tags');
-});
-
 
 // Main run block
 angular.module('yummy').run(function ($rootScope, $log) {
