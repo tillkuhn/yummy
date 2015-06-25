@@ -1,6 +1,3 @@
-<div class="alert alert-info">
-    <p ng-bind="msg"></p>
-</div>
 
 <div class="row">
     <div class="col-md-4">
@@ -10,10 +7,14 @@
         <h2 ng-bind="dish.name"></h2>
 
         <h3 ng-bind="dish.authenticName"></h3>
+        <div class="control-group">
+            <label class="control-label" for="url"><span class="glyphicon glyphicon-thumbs-up"></span> Rating</label>
+            <rating name="rating" ng-model="dish.rating" max="maxRating" readonly="false" ></rating>
+        </div>
         Times served: <span ng-bind="dish.timesServed"></span> <br/>
         Last served: <span ng-bind="dish.lastServedDate"></span>  <br />
         <!-- see http://getbootstrap.com/components/-->
-        <a ng-href="{{dish.url}}" ng-show="dish.url" target="_blank"> <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Show Recipe</a>
+        <a ng-href="{{dish.url}}" ng-show="dish.url" target="_blank"> <span class="fa fa-external-link" aria-hidden="true"></span> Show Recipe</a>
     </div>
 </div>
 
@@ -75,12 +76,6 @@
         </div>
     </div>
 
-
-    <div class="control-group">
-        <label class="control-label" for="url"><span class="glyphicon glyphicon-thumbs-up"></span> Rating</label>
-        <rating ng-model="dish.rating" max="maxRating" readonly="false" ></rating>
-    </div>
-
     <div>
         <button ng-click="save(dish)" class="btn btn-primary" ng-show="dishId !== 'new' "ng-disabled="dishForm.$invalid || dishForm.$pristine">
             <span class="glyphicon glyphicon-save"></span> Update Dish
@@ -89,6 +84,7 @@
         <button ng-click="remove(dish)" class="btn btn-primary"><span class="fa fa-trash"></span> Remove Dish</button>
         <button ng-click="cancel()" class="btn btn-primary" ng-disabled="dishForm.$pristine"><span class="fa fa-undo"></span> Cancel Edit</button>
         <button ng-click="overview()" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Overview</button>
+        <span ng-bind="msg"></span>
     </div>
     <!--
     <div class="control-group">

@@ -1,10 +1,5 @@
 <div class="col-md-12">
-
-    <h3>My Dishes</h3>
     <!--<form name="dishForm" novalidate> -->
-    <div class="alert alert-info">
-        <p ng-bind="msg"></p>
-    </div>
     <!--	checkout https://scotch.io/tutorials/sort-and-filter-a-table-using-angular -->
 
     <form>
@@ -12,7 +7,7 @@
             <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-search"></i></div>
 
-                <input type="text" class="form-control" placeholder="Search Ingredients" ng-model="searchIngredients">
+                <input type="text" class="form-control" placeholder="Search my Dishes for Tags" ng-model="searchIngredients">
 
             </div>
         </div>
@@ -29,7 +24,6 @@
                 </a>
             </th>
             <th>Tags</th>
-            <th>Link</th>
             <th>
                 <a ng-click="sortType = 'rating'; sortReverse = !sortReverse">
                     Rating
@@ -51,10 +45,8 @@
                       style="background-color: #3071a9;  color:white; padding: 3px; margin-right: 10px">{{tag.text}}</span>
             </td>
             <td>
-                <a ng-href="{{dish.url}}" ng-show="dish.url" target="show">Show</a>
-            </td>
-            <td>
-                <span class="glyphicon glyphicon-thumbs-up" ng-bind="dish.rating"></span>
+                <span class="glyphicon glyphicon-thumbs-up"></span> <span ng-bind="dish.rating"></span>
+                <a ng-href="{{dish.url}}" ng-show="dish.url" target="show"><span class="fa fa-external-link"></span></a>
             </td>
             <!-- Actions -->
         </tbody>
@@ -63,6 +55,12 @@
     <button ng-click="add()" type="submit" class="btn btn-primary">
         <span class="glyphicon glyphicon-plus"></span> Add new dish
     </button>
+
+    <button ng-click="overview()" type="submit" class="btn btn-primary">
+        <span class="glyphicon glyphicon-refresh"></span> Refresh
+    </button>
+
+    <span ng-bind="msg"></span>
     <input type="checkbox" ng-model="debug"> Debug
 
     <br/>

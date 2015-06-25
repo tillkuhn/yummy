@@ -3,8 +3,8 @@ angular.module('yummy').controller('DishOverviewCtrl', function ($scope, Dish, $
     var fields = {"name": 1, "rating": 1, "ingredients": 1, "url": 1,"tags":1};
     var limit = 100;
 
-    $scope.sortType = 'name'; // set the default sort type
-    $scope.sortReverse = false;  // set the default sort order
+    $scope.sortType = 'rating'; // set the default sort type
+    $scope.sortReverse = true;  // set the default sort order
     $scope.searchIngredients = '';     // set the default search/filter term
 
     $scope.msg = "Loading all dishes from DB";

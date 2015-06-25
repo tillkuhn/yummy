@@ -8,5 +8,5 @@ var port = process.env.PORT || 9001;
 
 app.use(morgan('dev'));
 app.use(gzippo.staticGzip("" + __dirname + "/dist"));
-console.log("Serving app, check out http://localhost:"+port+"/index.html#/home");
+console.log("Serving app, check out http://localhost:"+port+"/");
 app.listen(port);
