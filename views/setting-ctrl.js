@@ -10,7 +10,6 @@ angular.module('yummy').controller('SettingCtrl', function ($scope, $log, MONGOL
         MONGOLAB_CONFIG.setApiKey(setting.API_KEY);
         MONGOLAB_CONFIG.setDbName(setting.DB_NAME);
         $log.debug("Settings saved");
-    }
-
-
+    };
+    
 });
