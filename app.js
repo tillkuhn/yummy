@@ -6,6 +6,7 @@ angular.module('yummy').config(function ($routeProvider) {
         when('/dishes', {templateUrl: 'views/dish-overview.html', controller: "DishOverviewCtrl"}).
         when('/dishes/:id', {templateUrl: 'views/dish-detail.html', controller: "DishDetailCtrl"}).
         when('/settings', {templateUrl: 'views/setting.html', controller: "SettingCtrl"}).
+        when('/tags', {templateUrl: 'views/tag-overview.html', controller: "TagOverviewCtrl"}).
         /* Add New Routes Above */
         otherwise({redirectTo: '/dishes'});
 

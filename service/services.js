@@ -7,7 +7,6 @@ angular.module('yummy').factory('Tag', function ($mongolabResourceHttp) {
     return $mongolabResourceHttp('tags');
 });
 
-
 // angular.module('yummy').constant('MONGOLAB_CONFIG', {API_KEY: 'gexKhnbdwA0fTjVkU5HwZJ8WHkYL6pQd', DB_NAME: 'yummy'});
 angular.module('yummy').factory('MONGOLAB_CONFIG', function ($log) {
 
