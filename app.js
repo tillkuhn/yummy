@@ -1,4 +1,4 @@
-angular.module('yummy', ['ui.bootstrap', 'ui.utils', 'ngRoute', 'ngAnimate','ngTagsInput', 'mongolabResourceHttp']);
+angular.module('yummy', ['ui.bootstrap', 'ui.utils', 'ngRoute', 'ngAnimate','ngTagsInput','ngCookies','ipCookie','mongolabResourceHttp']);
 
 angular.module('yummy').config(function ($routeProvider) {
 
@@ -13,10 +13,11 @@ angular.module('yummy').config(function ($routeProvider) {
 });
 // Useful constants
 angular.module('yummy').constant('DEFAULT_ROUTE', "/dishes");
-angular.module('yummy').constant('MONGOLAB_CONFIG',{API_KEY:'gexKhnbdwA0fTjVkU5HwZJ8WHkYL6pQd', DB_NAME:'yummy'});
+angular.module('yummy').constant('MONGOLAB_CONFIG',{API_KEY:null, DB_NAME:'yummy','API_KEY_COOKIE_NAME':'YUMMY_API_KEY'});
+angular.module('yummy').constant('API_KEY_COOKIE_NAME',"YUMMY_API_KEY");
 
 // Main run block
-angular.module('yummy').run(function ($rootScope, $log, $location, mongolabResourceConfig) {
+angular.module('yummy').run(function ($rootScope, $log, $location, mongolabResourceConfig,$cookies, API_KEY_COOKIE_NAME) {
 
     $rootScope.safeApply = function (fn) {
         var phase = $rootScope.$$phase;
@@ -29,13 +30,16 @@ angular.module('yummy').run(function ($rootScope, $log, $location, mongolabResou
         }
     };
 
+    console.log(mongolabResourceConfig.configured());
     if (mongolabResourceConfig.configured() === false) {
-        $log.warn("yummy is not configured");
-        $location.path("/settings");
-    } else {
-        // mongolabResourceConfig.apiKey("klaus");
-        $log.debug("Yummy entering run state");
+        var cookieApiKey = $cookies[API_KEY_COOKIE_NAME];
+        if (cookieApiKey && 0 !== cookieApiKey.length ) {
+            $log.info("Using api key from cookie");
+            mongolabResourceConfig.apiKey(cookieApiKey);
+        } else {
+            $log.warn("yummy api key is not yet configured, rerouting to settings view");
+            $location.path("/settings");
+        }
     }
-
 
 });

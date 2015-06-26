@@ -1,4 +1,4 @@
-angular.module('yummy').controller('SettingCtrl', function ($scope, $log, mongolabResourceConfig) {
+angular.module('yummy').controller('SettingCtrl', function ($scope, $log, mongolabResourceConfig, ipCookie, API_KEY_COOKIE_NAME) {
 
     $scope.alerts = [
         //{ type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.' },
@@ -6,13 +6,15 @@ angular.module('yummy').controller('SettingCtrl', function ($scope, $log, mongol
     ];
 
 	$scope.setting = {
-        "apiKey" : "klaus",
-        "dbUrl" : mongolabResourceConfig.dbUrl()
+        "apiKey" : mongolabResourceConfig.apiKey(),
+        "dbUrl" : mongolabResourceConfig.dbUrl(),
+        cookieExpires: 7
     };
 
     $scope.save = function(setting) {
         mongolabResourceConfig.apiKey(setting.apiKey);
-        $log.debug("Settings saved");
+        $log.debug("Settings saved" + mongolabResourceConfig.apiKey() );
+        ipCookie(API_KEY_COOKIE_NAME, mongolabResourceConfig.apiKey(), { expires: parseInt(setting.cookieExpires) });
         $scope.alerts.push({type: 'success',msg: 'Well done'});
     };
 

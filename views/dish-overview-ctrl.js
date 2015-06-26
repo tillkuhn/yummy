@@ -1,6 +1,6 @@
 angular.module('yummy').controller('DishOverviewCtrl', function ($scope, Dish, $location) {
 
-    var fields = {"name": 1, "rating": 1, "ingredients": 1, "url": 1,"tags":1};
+    var fields = {"name": 1, "rating": 1, "ingredients": 1, "url": 1, "tags": 1};
     var limit = 100;
 
     $scope.sortType = 'rating'; // set the default sort type
@@ -14,10 +14,13 @@ angular.module('yummy').controller('DishOverviewCtrl', function ($scope, Dish, $
     $scope.overview = function () {
         var options = {
             "fields": fields,
-            "sort": {"name":1},
-            "limit":limit };
+            "sort": {"name": 1},
+            "limit": limit
+        };
         Dish.all(options).then(function (dishes) {
-        $scope.dishes = dishes;
+            $scope.dishes = dishes;
+        }, function (data, status, headers, config) {
+            $scope.msg = "ERROR Status " + status + " " + angular.toJson(data);
         });
     };
     $scope.overview();

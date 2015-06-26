@@ -3,11 +3,15 @@
 
     <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 
-    <input type="text" ng-model="setting.apiKey" size="42" placeholder="Enter your Mongolab API Key" ng-required/>
+
+    <input type="text" ng-model="setting.apiKey" size="42" placeholder="Enter your Mongolab API Key (mandatory)" ng-required />
     <br/>
-    <input type="text" ng-model="setting.dbUrl" size="42" placeholder="Enter your Mongolab DB Name" ng-required/>
+    <input type="text" ng-model="setting.dbUrl" size="42" placeholder="Your current Mongolab DB Name" readonly/>
+    <br/>
+    <input type="text" ng-model="setting.cookieExpires" size="3"  min="0" max="99" placeholder="Number of days for cookie expiry" ng-required/>
     <br/>
     <br/>
+
     <button ng-click="save(setting)" class="btn btn-primary" ng-show="dishId !== 'new' "
             ng-disabled="settingsForm.$invalid || settingsForm.$pristine">
         <span class="glyphicon glyphicon-save"></span> Save Settings

@@ -12,10 +12,14 @@ angular.module('mongolabResourceHttp', [])
 
         return {
             apiKey: function(key) {
-                _apiKey = key;
+                if (key === undefined) {
+                    return _apiKey;
+                } else {
+                    _apiKey = key;
+                }
             },
             defaultParams: function() {
-                return {"apiKey" : _apiKey}
+                return {"apiKey" : _apiKey};
             },
             collectionUrl: function (collectionName) {
                 return _dbUrl + '/collections/' + collectionName;
@@ -24,7 +28,7 @@ angular.module('mongolabResourceHttp', [])
                 return _dbUrl;
             },
             configured: function() {
-                return _apiKey  && 0 !== _apiKey.length;
+                return _apiKey  && 0 !== _apiKey.length ? true : false;
             }
         };
 
