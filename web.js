@@ -9,4 +9,7 @@ var port = process.env.PORT || 9001;
 app.use(morgan('dev'));
 app.use(gzippo.staticGzip("" + __dirname + "/dist"));
 console.log("Serving app, check out http://localhost:"+port+"/");
+app.get('/', function(req, res){
+    res.sendfile('./dist/index.html');
+});
 app.listen(port);
