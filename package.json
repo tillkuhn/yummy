@@ -23,13 +23,13 @@
     "grunt-contrib-uglify": "~0.2",
     "grunt-contrib-watch": "~0.5",
     "grunt-dom-munger": "~3.4",
-    "grunt-execute": "^0.2.2",
+    "grunt-execute": "~0.2",
     "grunt-ngmin": "0.0.3",
     "load-grunt-tasks": "~0.2"
   },
   "dependencies": {
-    "morgan": "^1.6.0",
-    "gzippo": "^0.2.0",
-    "express": "^4.12.4"
+    "morgan": "~1.6",
+    "gzippo": "~0.2",
+    "express": "~4.12"
   }
 }
