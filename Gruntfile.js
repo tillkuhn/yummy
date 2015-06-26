@@ -118,7 +118,8 @@ module.exports = function (grunt) {
                     remove: ['script[data-remove!="exclude"]', 'link'],
                     append: [
                         {selector: 'body', html: '<script src="app.full.min.js"></script>'},
-                        {selector: 'head', html: '<link rel="stylesheet" href="css/app.full.min.css">'}
+                        {selector: 'head', html: '<link rel="stylesheet" href="css/app.full.min.css">'},
+                        {selector: 'head', html: '<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">'}
                     ]
                 },
                 src: 'index.html',
