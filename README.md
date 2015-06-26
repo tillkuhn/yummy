@@ -32,8 +32,8 @@ MIT
 
 Todos
 ----
-* Make it look nice
 * Add flavour :sparkling_heart:
+* Implement coverage in karma and report in travis see https://github.com/nickmerwin/node-coveralls :point_left:
 * Ceckout https://github.com/mbenford/ngTagsInput
 * Deploy somewhere check out [openshift](https://blog.openshift.com/getting-started-with-mongodb-on-nodejs-on-openshift/) or [Heroku1](http://www.sitepoint.com/deploying-yeomanangular-app-heroku/) or [Heroku2](http://cloud.dzone.com/articles/how-deploy-angularjs-app)
 
