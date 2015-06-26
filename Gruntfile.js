@@ -70,14 +70,6 @@ module.exports = function (grunt) {
                 src: ['temp']
             }
         },
-        less: {
-            production: {
-                options: {},
-                files: {
-                    'temp/app.css': 'app.less'
-                }
-            }
-        },
         ngtemplates: {
             main: {
                 options: {
@@ -107,10 +99,7 @@ module.exports = function (grunt) {
                         src: ['bower_components/bootstrap/dist/fonts/**'],
                         dest: 'dist/fonts',
                         filter: 'isFile'
-                    },
-                    //{src: ['bower_components/angular-ui-utils/ui-utils-ieshiv.min.js'], dest: 'dist/'},
-                    //{src: ['bower_components/select2/*.png','bower_components/select2/*.gif'], dest:'dist/css/',flatten:true,expand:true},
-                    //{src: ['bower_components/angular-mocks/angular-mocks.js'], dest: 'dist/'}
+                    }
                 ]
             }
         },
@@ -129,7 +118,7 @@ module.exports = function (grunt) {
                     remove: ['script[data-remove!="exclude"]', 'link'],
                     append: [
                         {selector: 'body', html: '<script src="app.full.min.js"></script>'},
-                        {selector: 'head', html: '<link rel="stylesheet" href="app.full.min.css">'}
+                        {selector: 'head', html: '<link rel="stylesheet" href="css/app.full.min.css">'}
                     ]
                 },
                 src: 'index.html',
@@ -139,7 +128,7 @@ module.exports = function (grunt) {
         cssmin: {
             main: {
                 src: ['temp/app.css', '<%= dom_munger.data.appcss %>'],
-                dest: 'dist/app.full.min.css'
+                dest: 'dist/css/app.full.min.css'
             }
         },
         concat: {
@@ -216,8 +205,8 @@ module.exports = function (grunt) {
 
             //find the appropriate unit test for the changed file
             var spec = filepath;
-            if (filepath.lastIndexOf('-spec.js') === -1 || filepath.lastIndexOf('-spec.js') !== filepath.length - 8) {
-                spec = filepath.substring(0, filepath.length - 3) + '-spec.js';
+            if (filepath.lastIndexOf('.spec.js') === -1 || filepath.lastIndexOf('.spec.js') !== filepath.length - 8) {
+                spec = filepath.substring(0, filepath.length - 3) + '.spec.js';
             }
 
             //if the spec exists then lets run it
