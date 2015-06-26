@@ -13,10 +13,10 @@ angular.module('yummy').config(function ($routeProvider) {
 });
 // Useful constants
 angular.module('yummy').constant('DEFAULT_ROUTE', "/dishes");
-
+angular.module('yummy').constant('MONGOLAB_CONFIG',{API_KEY:'gexKhnbdwA0fTjVkU5HwZJ8WHkYL6pQd', DB_NAME:'yummy'});
 
 // Main run block
-angular.module('yummy').run(function ($rootScope, $log, $location, MONGOLAB_CONFIG) {
+angular.module('yummy').run(function ($rootScope, $log, $location, mongolabResourceConfig) {
 
     $rootScope.safeApply = function (fn) {
         var phase = $rootScope.$$phase;
@@ -29,51 +29,13 @@ angular.module('yummy').run(function ($rootScope, $log, $location, MONGOLAB_CONF
         }
     };
 
-    if (MONGOLAB_CONFIG.isConfigured() === false) {
+    if (mongolabResourceConfig.configured() === false) {
         $log.warn("yummy is not configured");
         $location.path("/settings");
     } else {
+        // mongolabResourceConfig.apiKey("klaus");
         $log.debug("Yummy entering run state");
     }
 
 
 });
-
-angular.module('yummy').directive('starRating', function () {
-        return {
-            restrict: 'A',
-            template: '<ul class="rating"><li ng-repeat="star in stars" ng-class="star" ng-click="toggle($index)"><i class="fa fa-star-o"></i></li></ul>',
-
-            scope: {
-                ratingValue: '=',
-                max: '=',
-                onRatingSelected: '&'
-            },
-            link: function (scope, elem, attrs) {
-                var updateStars = function () {
-                    scope.stars = [];
-                    for (var i = 0; i < scope.max; i++) {
-                        scope.stars.push({
-                            filled: i < scope.ratingValue
-                        });
-                    }
-                };
-
-                scope.toggle = function (index) {
-                    scope.ratingValue = index + 1;
-                    scope.onRatingSelected({
-                        rating: index + 1
-                    });
-                };
-
-                scope.$watch('ratingValue',
-                    function (oldVal, newVal) {
-                        if (newVal) {
-                            updateStars();
-                        }
-                    }
-                );
-            }
-        };
-    }
-);

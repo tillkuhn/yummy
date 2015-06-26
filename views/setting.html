@@ -1,10 +1,16 @@
 <h1>Settings</h1>
 <form name="settingsForm">
 
-<input type="text" ng-model="setting.API_KEY" size="42" placeholder="Enter your Mongolab API Key"  ng-required /> <br />
-<input type="text" ng-model="setting.DB_NAME" size="42" placeholder="Enter your Mongolab DB Name"  ng-required /> <br />
-    <br />
-<button ng-click="save(setting)" class="btn btn-primary" ng-show="dishId !== 'new' "ng-disabled="settingsForm.$invalid || settingsForm.$pristine">
-    <span class="glyphicon glyphicon-save"></span> Save Settings
-</button>
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+
+    <input type="text" ng-model="setting.apiKey" size="42" placeholder="Enter your Mongolab API Key" ng-required/>
+    <br/>
+    <input type="text" ng-model="setting.dbUrl" size="42" placeholder="Enter your Mongolab DB Name" ng-required/>
+    <br/>
+    <br/>
+    <button ng-click="save(setting)" class="btn btn-primary" ng-show="dishId !== 'new' "
+            ng-disabled="settingsForm.$invalid || settingsForm.$pristine">
+        <span class="glyphicon glyphicon-save"></span> Save Settings
+    </button>
 </form>
+
