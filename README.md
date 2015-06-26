@@ -28,7 +28,7 @@ Tests
 
 License
 ------
-MIT
+See the [LICENSE](https://github.com/tillkuhn/yummy/blob/master/LICENSE) file.
 
 Todos
 ----
