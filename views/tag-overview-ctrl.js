@@ -30,7 +30,7 @@ angular.module('yummy').controller('TagOverviewCtrl', function ($scope, $log, Ta
           $scope.overview();
       });
 
-    }
+    };
 
 })
 ;
