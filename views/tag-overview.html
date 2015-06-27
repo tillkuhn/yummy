@@ -1,0 +1,49 @@
+<div class="col-md-12">
+
+    <h3>My Dishes</h3>
+    <!--<form name="dishForm" novalidate> -->
+    <div class="alert alert-info">
+        <p ng-bind="msg"></p>
+    </div>
+    <!--	checkout https://scotch.io/tutorials/sort-and-filter-a-table-using-angular -->
+
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>
+              Tag Name
+            </th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <!-- dish rows -->
+        <tbody>
+        <tr ng-repeat="tag in tags ">
+            <!--td>	<input type="text" ng-model="dish.name" ng-blur="saveRecipe(dish)" size="42"/></td> -->
+            <td>
+                <a ng-href="#/tags/{{tag.$id()}}"><span ng-bind="tag.text"></span></a>
+            </td>
+            <td>
+              <button ng-click="remove(tag)" class="btn btn-primary"><span class="fa fa-trash"></span> Remove</button>
+            </td>
+        </tbody>
+    </table>
+    <br/>
+
+    <div class="control-group">
+        <div class="controls">
+            <input name="tagText" ng-model="addTag.text" placeholder="new tag text" class="input-xlarge" size="60"/>
+          <button ng-click="add(addTag)" type="submit" class="btn btn-primary">
+              <span class="glyphicon glyphicon-plus"></span>Add new Tag
+          </button>
+        </div>
+    </div>
+
+    <input type="checkbox" ng-model="debug"> Debug
+
+    <br/>
+
+    <pre ng-bind="tags|json" ng-show="debug"></pre>
+    <!--</form> -->
+
+</div>
