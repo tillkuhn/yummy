@@ -1,23 +1,14 @@
-/* for star rating */
-.rating {
-    color: #a9a9a9;
-    margin: 0;
+/* for logo */
+.navbar-brand {
     padding: 0;
+    margin-right: 25px;
 }
 
-ul.rating {
-    display: inline-block;
+.navbar-brand img {
+    margin-left: 5px;
+    vertical-align: bottom;
 }
 
-.rating li {
-    list-style-type: none;
-    display: inline-block;
-    padding: 1px;
-    text-align: center;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.rating .filled {
-    color: #21568b;
+.navbar-brand span {
+    font-size: 180%;
 }

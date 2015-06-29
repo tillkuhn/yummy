@@ -5,11 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
 
-    <!-- CSS -->
-    <!--
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/sandstone/bootstrap.min.css">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-    -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="bower_components/ng-tags-input/ng-tags-input.min.css">
@@ -34,7 +29,6 @@
 <script src="bower_components/ng-tags-input/ng-tags-input.min.js"></script>
 <!-- Add New Bower Component JS Above -->
 
-
 <!-- Main App JS -->
 <script src="app.js"></script>
 <script src="service/angular-mongolab.js"></script>
@@ -45,10 +39,8 @@
 <script src="views/tag-overview-ctrl.js"></script>
 <!-- Add New Component JS Above -->
 
-<div id="content" class="container">
-    <!-- header + navigation -->
-    <div ng-include="'views/header.html'"></div>
-    <!-- main view -->
+<div ng-include="'views/navigation.html'"></div>
+<div id="content" class="container" style="margin-top: 75px">
     <div ng-view></div>
 </div>
 
