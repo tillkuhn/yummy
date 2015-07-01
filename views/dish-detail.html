@@ -1,43 +1,43 @@
-
 <div class="row">
     <div class="col-md-4">
         <img src="{{dish.imageUrl}}" ng-show="dish.imageUrl" width="300"></img>
     </div>
     <div class="col-md-8">
         <h2>
-          <img src="{{countryImageUrl(dish.country)}}"></img>
-          {{dish.name}}
+            <img src="{{countryImageUrl(dish.country)}}"></img>
+            {{dish.name}}
         </h2>
 
         <h3 ng-bind="dish.authenticName"></h3>
         <div class="control-group">
-            <label class="control-label" for="url"><span class="glyphicon glyphicon-thumbs-up"></span> Rating</label>
-            <rating name="rating" ng-model="dish.rating" max="maxRating" readonly="false" ></rating>
+            <label class="control-label" for="url">
+                <span class="glyphicon glyphicon-thumbs-up"></span> Rating</label>
+            <rating name="rating" ng-model="dish.rating" max="maxRating" readonly="false"></rating>
         </div>
-        Times served: <span ng-bind="dish.timesServed"></span> <br/>
-        Last served: <span ng-bind="dish.lastServedDate"></span>  <br />
+        Times served:
+        <span ng-bind="dish.timesServed"></span>
+        <br/> Last served:
+        <span ng-bind="dish.lastServedDate"></span>
+        <br />
         <!-- see http://getbootstrap.com/components/-->
-        <a ng-href="{{dish.url}}" ng-show="dish.url" target="_blank"> <span class="fa fa-external-link" aria-hidden="true"></span> Show Recipe</a>
+        <a ng-href="{{dish.url}}" ng-show="dish.url" target="_blank">
+            <span class="fa fa-external-link" aria-hidden="true"></span> Show Recipe</a>
     </div>
 </div>
 
 <form name="dishForm">
-  <div class="control-group">
+    <div class="control-group">
         <label class="control-label" for="name">Name (with optional authentic name and country)</label>
         <div class="controls">
-            <input name="name" ng-model="dish.name" type="text" placeholder="Name of dish (required)"
-                   class="input-xlarge" required="" size="60"
-                   ng-class="{error: dish.name.$invalid && !dish.name.$pristine}"/>
-                 <input name="authenticName" ng-model="dish.authenticName" type="text" placeholder="Authentic Name"
-                        class="input-xlarge" size="40"
-                        ng-class="{error: dish.authenticName.$invalid && !dish.authenticName.$pristine}"/>
-                  <select name="country" ng-model="dish.country" ng-options="country.code as country.name group by country.area for country in countries" >
-                      <option value="">-- choose country --</option>
-                    </select>
+            <input name="name" ng-model="dish.name" type="text" placeholder="Name of dish (required)" class="input-xlarge" required="" size="60" ng-class="{error: dish.name.$invalid && !dish.name.$pristine}" />
+            <input name="authenticName" ng-model="dish.authenticName" type="text" placeholder="Authentic Name" class="input-xlarge" size="40" ng-class="{error: dish.authenticName.$invalid && !dish.authenticName.$pristine}" />
+            <select name="country" ng-model="dish.country" ng-options="country.code as country.name group by country.area for country in countries">
+                <option value="">-- choose country --</option>
+            </select>
 
         </div>
-  </div>
-<!--
+    </div>
+    <!--
     <div class="control-group" ng-class="{error: dish.ingredients.$invalid && !user.ingredients.$pristine}">
         <label class="control-label" for="ingredients">Ingredients</label>
 
@@ -58,7 +58,7 @@
     <div class="control-group">
         <label class="control-label" for="url">Link to Recipe</label>
         <div class="controls">
-            <input name="url" ng-model="dish.url" placeholder="url" class="input-xlarge" type="url" size="40"/>
+            <input name="url" ng-model="dish.url" placeholder="url" class="input-xlarge" type="url" size="40" />
         </div>
     </div>
 
@@ -71,18 +71,21 @@
             <span class="error" ng-show="dishForm.imageUrl.$error.url">Not valid url!</span>
         </div>
         <div class="controls">
-            <input name="imageUrl" ng-model="dish.imageUrl" placeholder="url" class="input-xlarge" type="url" size="60"/>
+            <input name="imageUrl" ng-model="dish.imageUrl" placeholder="url" class="input-xlarge" type="url" size="60" />
         </div>
     </div>
 
     <br />
     <div class="control-group">
-        <button ng-click="save(dish)" class="btn btn-primary" ng-show="dishId !== 'new' "ng-disabled="dishForm.$invalid || dishForm.$pristine">
+        <button ng-click="save(dish)" class="btn btn-primary" ng-show="dishId !== 'new' " ng-disabled="dishForm.$invalid || dishForm.$pristine">
             <span class="glyphicon glyphicon-save"></span> Update Dish
         </button>
-        <button ng-click="justServed(dish)" class="btn btn-primary"><span class="glyphicon glyphicon-cutlery"></span> Just Served</button>
-        <button ng-click="remove(dish)" class="btn btn-primary"><span class="fa fa-trash"></span> Remove Dish</button>
-        <button ng-click="overview()" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Overview</button>
+        <button ng-click="justServed(dish)" class="btn btn-primary">
+            <span class="glyphicon glyphicon-cutlery"></span> Just Served</button>
+        <button ng-click="remove(dish)" class="btn btn-primary">
+            <span class="fa fa-trash"></span> Remove Dish</button>
+        <button ng-click="overview()" class="btn btn-primary">
+            <span class="glyphicon glyphicon-search"></span> Overview</button>
         <span ng-bind="msg"></span>
     </div>
 
