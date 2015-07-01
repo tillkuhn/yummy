@@ -5,6 +5,21 @@ angular.module('yummy').controller('DishDetailCtrl', function ($scope, $location
   $scope.maxRating = 10;
   $scope.dish = null;
   $scope.msg = null;
+  $scope.countries = [
+    {code:'de', name:'Deutschland',area:'Europa'},
+    {code:'es', name:'Spanien',area: 'Europa'},
+    {code:'gr', name:'Griechenland',area: 'Europa'},
+    {code:'it', name:'Italien',area: 'Europa'},
+    {code:'pt', name:'Portugal',area: 'Europa'},
+    {code:'eu', name:'Europa',area: 'Europa'},
+    {code:'mx', name:'Mexico',area: 'Restwelt' },
+    {code:'mm', name:'Myanmar',area: 'Asien' },
+    {code:'kh', name:'Kambodscha',area: 'Asien' },
+    {code:'ly', name:'Laos',area: 'Asien' },
+    {code:'lk', name:'Sri Lanka',area: 'Asien' },
+    {code:'th', name:'Thailand',area: 'Asien', notAnOption: false}
+  ];
+  //$scope.myColor = $scope.colors[2];
 
   $scope.loadTags = function(query) {
 
@@ -20,7 +35,7 @@ angular.module('yummy').controller('DishDetailCtrl', function ($scope, $location
     });
     return deferred.promise;
   };
-  
+
   $scope.$watch("dish.rating", function(newValue, oldValue) {
     if (oldValue !== undefined) {
       if (newValue > oldValue) {
@@ -95,14 +110,13 @@ angular.module('yummy').controller('DishDetailCtrl', function ($scope, $location
     return dish.imageUrl ? dish.imageUrl : "";
   };
 
-  /*
-  $scope.updateRating = function(dish) {
-  dish.$saveOrUpdate().then(function (data) {
-  var resultPromise = data;
-  $scope.msg = dish.name + " rating updated with " + dish.rating + " stars";
-});
-};
-*/
+  $scope.countryImageUrl = function(countryCode) {
+    if (! countryCode || countryCode === 'xx') {
+      return "img/flags/xx.png";
+    } else {
+      return "img/flags/" + countryCode + ".png";
+    }
+  };
 
 $scope.rateFunction = function (rating) {
   console.log("Rating selected: " + rating);
