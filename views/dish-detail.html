@@ -23,7 +23,7 @@
 
 <form name="dishForm">
   <div class="control-group">
-        <label class="control-label" for="name">Name (with optional authentic name)</label>
+        <label class="control-label" for="name">Name (with optional authentic name and country)</label>
         <div class="controls">
             <input name="name" ng-model="dish.name" type="text" placeholder="Name of dish (required)"
                    class="input-xlarge" required="" size="60"
@@ -31,6 +31,10 @@
                  <input name="authenticName" ng-model="dish.authenticName" type="text" placeholder="Authentic Name"
                         class="input-xlarge" size="40"
                         ng-class="{error: dish.authenticName.$invalid && !dish.authenticName.$pristine}"/>
+                  <select name="country" ng-model="dish.country" ng-options="country.code as country.name group by country.area for country in countries" >
+                      <option value="">-- choose country --</option>
+                    </select>
+
         </div>
   </div>
 <!--
@@ -43,14 +47,6 @@
         </div>
     </div>
   -->
-  <div class="control-group">
-    <label class="control-label" for="country">Country</label>
-    <div class="controls">
-  <select name="country" ng-model="dish.country" ng-options="country.code as country.name group by country.area for country in countries">
-      <option value="">-- choose country --</option>
-    </select>
-  </div>
-</div>
 
     <div class="control-group">
         <div class="controls">
@@ -79,7 +75,8 @@
         </div>
     </div>
 
-    <div>
+    <br />
+    <div class="control-group">
         <button ng-click="save(dish)" class="btn btn-primary" ng-show="dishId !== 'new' "ng-disabled="dishForm.$invalid || dishForm.$pristine">
             <span class="glyphicon glyphicon-save"></span> Update Dish
         </button>

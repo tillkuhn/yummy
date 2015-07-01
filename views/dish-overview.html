@@ -26,11 +26,21 @@
             <th>Tags</th>
             <th>
                 <a ng-click="sortType = 'rating'; sortReverse = !sortReverse">
-                    Rating
+                    <span class="glyphicon glyphicon-thumbs-up"></span>
                     <span ng-show="sortType == 'rating' && !sortReverse" class="fa fa-caret-down"></span>
                     <span ng-show="sortType == 'rating' && sortReverse" class="fa fa-caret-up"></span>
                 </a>
             </th>
+          <th>
+              <a ng-click="sortType = 'timesServed'; sortReverse = !sortReverse">
+                  <span class="glyphicon glyphicon-cutlery"></span>
+                  <span ng-show="sortType == 'timesServed' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'timesServed' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+          </th>
+          <th>
+            <span class="glyphicon glyphicon-globe"></span>
+          </th>
         </tr>
         </thead>
         <!-- dish rows -->
@@ -39,17 +49,21 @@
             <!--td>	<input type="text" ng-model="dish.name" ng-blur="saveRecipe(dish)" size="42"/></td> -->
             <td>
                 <a ng-href="#/dishes/{{dish.$id()}}"><span ng-bind="dish.name"></span></a>
+              <a ng-href="{{dish.url}}" ng-show="dish.url" target="show"><span class="fa fa-external-link"></span></a>
             </td>
             <td>
                 <span ng-repeat="tag in dish.tags"
                       style="background-color: #3071a9;  color:white; padding: 3px; margin-right: 10px">{{tag.text}}</span>
             </td>
             <td>
-                <span class="glyphicon glyphicon-thumbs-up"></span> <span ng-bind="dish.rating"></span>
-                <a ng-href="{{dish.url}}" ng-show="dish.url" target="show"><span class="fa fa-external-link"></span></a>
-                <span ng-bind="dish.country"></span>
+                <span ng-bind="dish.rating"></span>&nbsp;
             </td>
-            <!-- Actions -->
+            <td>
+              <span ng-bind="dish.timesServed"></span>
+            </td>
+            <td>
+              <span ng-bind="dish.country"></span>
+            </td>
         </tbody>
     </table>
     <br/>
