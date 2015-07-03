@@ -83,7 +83,7 @@ module.exports = function (grunt) {
         copy: {
             main: {
                 files: [
-                    {src: ['favicon.ico', 'img/**'], dest: 'dist/'},
+                    {src: ['favicon.ico', 'img/**','resources/**'], dest: 'dist/'},
                     // {src: ['bower_components/font-awesome/fonts/**'], dest: 'dist/',filter:'isFile',expand:true}
                     // flattens results to a single level
                     {

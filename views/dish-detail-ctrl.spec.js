@@ -14,7 +14,7 @@ describe('DishDetailCtrl', function () {
     }));
 
     it('should load countries on init', inject(function () {
-        var api = new RegExp('service/countries.json');
+        var api = new RegExp('resources/countries.json');
         $httpBackend.expectGET(api).respond(200,[{code: 'ly',name: 'Laos',area: 'Asien'}]);
         $httpBackend.expectGET(new RegExp("https://api.mongolab.com/api/1/databases/yummy/collections/dishes/.+")).respond(200,{});
         $httpBackend.flush();

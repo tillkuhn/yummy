@@ -10,7 +10,7 @@ angular.module('yummy').factory('Tag', function ($mongolabResourceHttp) {
 angular.module('yummy').factory('Country', function ($http) {
     return {
         all: function() {
-            return $http.get("service/countries.json");
+            return $http.get("resources/countries.json");
         }
     };
 });
