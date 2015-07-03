@@ -1,61 +1,16 @@
-angular.module('yummy').controller('DishDetailCtrl', function($scope, $location, $log, $q, $routeParams, DEFAULT_ROUTE, Dish, Tag) {
+angular.module('yummy').controller('DishDetailCtrl', function($scope, $location, $log, $q, $routeParams, DEFAULT_ROUTE, Dish, Tag, Country) {
 
     var dishId = $routeParams['id'];
 
     $scope.maxRating = 10;
     $scope.dish = null;
     $scope.msg = null;
-    $scope.countries = [{
-        code: 'de',
-        name: 'Deutschland',
-        area: 'Europa'
-    }, {
-        code: 'es',
-        name: 'Spanien',
-        area: 'Europa'
-    }, {
-        code: 'gr',
-        name: 'Griechenland',
-        area: 'Europa'
-    }, {
-        code: 'it',
-        name: 'Italien',
-        area: 'Europa'
-    }, {
-        code: 'pt',
-        name: 'Portugal',
-        area: 'Europa'
-    }, {
-        code: 'eu',
-        name: 'Europa',
-        area: 'Europa'
-    }, {
-        code: 'mx',
-        name: 'Mexico',
-        area: 'Restwelt'
-    }, {
-        code: 'mm',
-        name: 'Myanmar',
-        area: 'Asien'
-    }, {
-        code: 'kh',
-        name: 'Kambodscha',
-        area: 'Asien'
-    }, {
-        code: 'ly',
-        name: 'Laos',
-        area: 'Asien'
-    }, {
-        code: 'lk',
-        name: 'Sri Lanka',
-        area: 'Asien'
-    }, {
-        code: 'th',
-        name: 'Thailand',
-        area: 'Asien',
-        notAnOption: false
-    }];
-    //$scope.myColor = $scope.colors[2];
+    $scope.countries = null;
+
+    Country.all().success(function(data) {
+        $scope.countries = data;
+    });
+
 
     $scope.loadTags = function(query) {
 
