@@ -68,6 +68,16 @@ angular.module('yummy').controller('DishDetailCtrl', function($scope, $location,
         } else {
             dish.timesServed += 1;
         }
+        var entry = new DiaryEntry();
+        entry.dishId = dish._id;
+        entry.servedDate =  dish.lastServedDate;
+        entry.notes = dish.name + " was served";
+        entry.$saveOrUpdate().then(function(data) {
+            //$scope.dish = data; // important for new so we get id etc.
+            //console.log(angular.toJson(data));
+            $scope.msg = "Diary entry saved";
+        });
+
     };
 
     $scope.remove = function(dish) {

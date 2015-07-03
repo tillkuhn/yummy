@@ -30,11 +30,12 @@ describe('DishDetailCtrl', function() {
 
 
     it('should increment served count', inject(function() {
-        $httpBackend.flush();
+      $httpBackend.expectPOST(new RegExp("https://api.mongolab.com/api/1/databases/yummy/collections/diary-entries.+")).respond(200, {});
         scope.dish = new Dish();
         scope.dish.timesServed = 1;
         scope.justServed(scope.dish);
         expect(scope.dish.timesServed).toEqual(2);
+        $httpBackend.flush();
 
     }));
 
