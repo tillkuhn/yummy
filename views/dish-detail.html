@@ -58,7 +58,7 @@
     <div class="control-group">
         <label class="control-label" for="url">Link to Recipe</label>
         <div class="controls">
-            <input name="url" ng-model="dish.url" placeholder="url" class="input-xlarge" type="url" size="40" />
+            <input name="url" ng-model="dish.url" placeholder="url" class="input-xlarge" type="url" size="80" />
         </div>
     </div>
 
@@ -71,7 +71,19 @@
             <span class="error" ng-show="dishForm.imageUrl.$error.url">Not valid url!</span>
         </div>
         <div class="controls">
-            <input name="imageUrl" ng-model="dish.imageUrl" placeholder="url" class="input-xlarge" type="url" size="60" />
+            <input name="imageUrl" ng-model="dish.imageUrl" placeholder="url" class="input-xlarge" type="url" size="80" />
+        </div>
+    </div>
+    <!-- URL to picture -->
+    <div class="control-group">
+        <label class="control-label" for="url">URL to Picture</label>
+
+        <div role="alert">
+            <span class="error" ng-show="dishForm.imageUrl.$error.required">Required!</span>
+            <span class="error" ng-show="dishForm.imageUrl.$error.url">Not valid url!</span>
+        </div>
+        <div class="controls">
+            <textarea name="notes" ng-model="dish.notes" placeholder="Recipe Notes"  cols="80" rows="3" ></textarea>
         </div>
     </div>
 
