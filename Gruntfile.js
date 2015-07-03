@@ -34,6 +34,7 @@ module.exports = function(grunt) {
     // load all grunt tasks
     grunt.loadNpmTasks('grunt-execute');
     grunt.loadNpmTasks('grunt-coveralls');
+    //grunt.loadNpmTasks('grunt-template-jasmine-istanbul');
     require('load-grunt-tasks')(grunt);
 
     // Project configuration.
@@ -60,12 +61,12 @@ module.exports = function(grunt) {
                 options: {
                     jshintrc: '.jshintrc'
                 },
-                src: createFolderGlobs(['*.js', '!**/*.spec.js'])
+                src: createFolderGlobs(['*.js', '!**/*.spec.js','!lcov-report/*.js'])
             }
         },
         clean: {
             before: {
-                src: ['dist', 'temp']
+                src: ['dist', 'temp','lcov-report']
             },
             after: {
                 src: ['temp']
@@ -103,8 +104,18 @@ module.exports = function(grunt) {
                         filter: 'isFile'
                     }
                 ]
+            },
+            deploy: {
+              files: [{
+                      src: ['**'],
+                      expand: true,
+                      cwd: 'dist/',
+                      dest: '/tmp/yummy-gh-pages/'
+                  } ]
+
             }
         },
+        // Munge munge
         dom_munger: {
             read: {
                 options: {
@@ -241,11 +252,12 @@ module.exports = function(grunt) {
     });
 
     // remove less after clean before
-    grunt.registerTask('build', ['jshint', 'clean:before', 'dom_munger', 'ngtemplates', 'cssmin', 'concat', 'ngmin', 'uglify', 'copy', 'htmlmin', 'clean:after']);
+    grunt.registerTask('build', ['jshint', 'clean:before', 'dom_munger', 'ngtemplates', 'cssmin', 'concat', 'ngmin', 'uglify', 'copy:main', 'htmlmin', 'clean:after']);
     grunt.registerTask('serve', ['dom_munger:read', 'jshint', 'connect', 'watch']);
     grunt.registerTask('test', ['dom_munger:read', 'jasmine:unit']);
     grunt.registerTask('web', ['execute:web']);
     grunt.registerTask('coverage', ['dom_munger:read','jasmine:coverage','coveralls']);
+    grunt.registerTask('deploy',['build','copy:deploy']);
     grunt.registerTask('default', ['serve']);
 
     grunt.event.on('watch', function(action, filepath) {

@@ -1,4 +1,4 @@
-angular.module('yummy').controller('DishDetailCtrl', function($scope, $location, $log, $q, $routeParams, DEFAULT_ROUTE, Dish, Tag, Country) {
+angular.module('yummy').controller('DishDetailCtrl', function($scope, $location, $log, $q, $routeParams, DEFAULT_ROUTE, Dish, Tag, Country, DiaryEntry) {
 
     var dishId = $routeParams['id'];
 
