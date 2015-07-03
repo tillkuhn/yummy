@@ -1,7 +1,9 @@
 node_modules
 bower_components
+lcov-report
 dist
 temp
+lcov.info
 .idea
 *.iml
 *.zip

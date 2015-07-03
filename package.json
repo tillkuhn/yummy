@@ -1,6 +1,8 @@
 {
   "name": "yummy",
-  "version": "0.0.1",
+  "version": "0.1",
+  "description": "A highly flexible yummy dish database",
+  "author": "Till Kuhn",
   "repository": {
     "type": "git",
     "url": "https://github.com/tillkuhn/yummy.git"
@@ -25,7 +27,9 @@
     "grunt-dom-munger": "~3.4",
     "grunt-execute": "~0.2",
     "grunt-ngmin": "0.0.3",
-    "load-grunt-tasks": "~0.2"
+    "load-grunt-tasks": "~0.2",
+    "grunt-coveralls": "~1.0",
+    "grunt-template-jasmine-istanbul": "~0.3"
   },
   "dependencies": {
     "morgan": "~1.6",

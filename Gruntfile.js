@@ -8,31 +8,32 @@ var pkg = require('./package.json');
 //this method is used to create a set of inclusive patterns for all subdirectories
 //skipping node_modules, bower_components, dist, and any .dirs
 //This enables users to create any directory structure they desire.
-var createFolderGlobs = function (fileTypePatterns) {
+var createFolderGlobs = function(fileTypePatterns) {
     fileTypePatterns = Array.isArray(fileTypePatterns) ? fileTypePatterns : [fileTypePatterns];
     var ignore = ['node_modules', 'bower_components', 'dist', 'temp'];
     var fs = require('fs');
     return fs.readdirSync(process.cwd())
-        .map(function (file) {
+        .map(function(file) {
             if (ignore.indexOf(file) !== -1 ||
                 file.indexOf('.') === 0 || !fs.lstatSync(file).isDirectory()) {
                 return null;
             } else {
-                return fileTypePatterns.map(function (pattern) {
+                return fileTypePatterns.map(function(pattern) {
                     return file + '/**/' + pattern;
                 });
             }
         })
-        .filter(function (patterns) {
+        .filter(function(patterns) {
             return patterns;
         })
         .concat(fileTypePatterns);
 };
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
 
     // load all grunt tasks
     grunt.loadNpmTasks('grunt-execute');
+    grunt.loadNpmTasks('grunt-coveralls');
     require('load-grunt-tasks')(grunt);
 
     // Project configuration.
@@ -82,8 +83,10 @@ module.exports = function (grunt) {
         },
         copy: {
             main: {
-                files: [
-                    {src: ['favicon.ico', 'img/**','resources/**'], dest: 'dist/'},
+                files: [{
+                        src: ['favicon.ico', 'img/**', 'resources/**'],
+                        dest: 'dist/'
+                    },
                     // {src: ['bower_components/font-awesome/fonts/**'], dest: 'dist/',filter:'isFile',expand:true}
                     // flattens results to a single level
                     {
@@ -92,8 +95,7 @@ module.exports = function (grunt) {
                         src: ['bower_components/font-awesome/fonts/**'],
                         dest: 'dist/fonts',
                         filter: 'isFile'
-                    },
-                    {
+                    }, {
                         expand: true,
                         flatten: true,
                         src: ['bower_components/bootstrap/dist/fonts/**'],
@@ -106,21 +108,31 @@ module.exports = function (grunt) {
         dom_munger: {
             read: {
                 options: {
-                    read: [
-                        {selector: 'script[data-build!="exclude"]', attribute: 'src', writeto: 'appjs'},
-                        {selector: 'link[rel="stylesheet"]', attribute: 'href', writeto: 'appcss'}
-                    ]
+                    read: [{
+                        selector: 'script[data-build!="exclude"]',
+                        attribute: 'src',
+                        writeto: 'appjs'
+                    }, {
+                        selector: 'link[rel="stylesheet"]',
+                        attribute: 'href',
+                        writeto: 'appcss'
+                    }]
                 },
                 src: 'index.html'
             },
             update: {
                 options: {
                     remove: ['script[data-remove!="exclude"]', 'link'],
-                    append: [
-                        {selector: 'body', html: '<script src="app.full.min.js"></script>'},
-                        {selector: 'head', html: '<link rel="stylesheet" href="css/app.full.min.css">'},
-                        {selector: 'head', html: '<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">'}
-                    ]
+                    append: [{
+                        selector: 'body',
+                        html: '<script src="app.full.min.js"></script>'
+                    }, {
+                        selector: 'head',
+                        html: '<link rel="stylesheet" href="css/app.full.min.css">'
+                    }, {
+                        selector: 'head',
+                        html: '<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">'
+                    }]
                 },
                 src: 'index.html',
                 dest: 'dist/index.html'
@@ -171,10 +183,31 @@ module.exports = function (grunt) {
                 src: ['<%= dom_munger.data.appjs %>', 'bower_components/angular-mocks/angular-mocks.js'],
                 options: {
                     keepRunner: false,
-                    specs: createFolderGlobs(['*.spec.js', '!vendor/angular-mongolab.spec.js'])
+                    specs: createFolderGlobs(['*.spec.js'])
+                }
+            },
+            coverage: {
+                src: ['<%= dom_munger.data.appjs %>', 'bower_components/angular-mocks/angular-mocks.js'],
+                options: {
+                    specs: createFolderGlobs(['*.spec.js']),
+                    keepRunner: false,
+                    template: require('grunt-template-jasmine-istanbul'),
+                    templateOptions: {
+                        coverage: 'coverage/coverage.json',
+                        // see https://github.com/maenu/grunt-template-jasmine-istanbul
+                        //report: 'coverage',
+                        report: {type: "lcov",options: {} },
+                        thresholds: {
+                            lines: 20,
+                            statements: 20,
+                            branches: 10,
+                            functions: 15
+                        }
+                    }
                 }
             }
         },
+
         execute: {
             web: {
                 // execute javascript files in a node child_process
@@ -186,17 +219,36 @@ module.exports = function (grunt) {
                 },
                 src: ['web.js']
             }
+        },
+        // Code coverage
+        coveralls: {
+            // Options relevant to all targets
+            options: {
+                // When true, grunt-coveralls will only print a warning rather than
+                // an error, to prevent CI builds from failing unnecessarily (e.g. if
+                // coveralls.io is down). Optional, defaults to false.
+                force: false
+            },
+
+            coverme: {
+                // LCOV coverage file (can be string, glob or array)
+                src: 'lcov.info',
+                options: {
+                    // Any options for just this target
+                }
+            },
         }
     });
 
     // remove less after clean before
     grunt.registerTask('build', ['jshint', 'clean:before', 'dom_munger', 'ngtemplates', 'cssmin', 'concat', 'ngmin', 'uglify', 'copy', 'htmlmin', 'clean:after']);
     grunt.registerTask('serve', ['dom_munger:read', 'jshint', 'connect', 'watch']);
-    grunt.registerTask('test', ['dom_munger:read', 'jasmine']);
+    grunt.registerTask('test', ['dom_munger:read', 'jasmine:unit']);
     grunt.registerTask('web', ['execute:web']);
+    grunt.registerTask('coverage', ['dom_munger:read','jasmine:coverage','coveralls']);
     grunt.registerTask('default', ['serve']);
 
-    grunt.event.on('watch', function (action, filepath) {
+    grunt.event.on('watch', function(action, filepath) {
         //https://github.com/gruntjs/grunt-contrib-watch/issues/156
 
         if (filepath.lastIndexOf('.js') !== -1 && filepath.lastIndexOf('.js') === filepath.length - 3) {
