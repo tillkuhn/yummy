@@ -6,6 +6,14 @@
         <p ng-bind="msg"></p>
     </div>
     <!--	checkout https://scotch.io/tutorials/sort-and-filter-a-table-using-angular -->
+    <div class="control-group">
+        <div class="controls">
+            <input name="tagText" ng-model="addTag.text" placeholder="new tag text" class="input-xlarge" size="60"/>
+          <button ng-click="add(addTag)" type="submit" class="btn btn-primary">
+              <span class="glyphicon glyphicon-plus"></span>Add new Tag
+          </button>
+        </div>
+    </div>
 
     <table class="table table-bordered table-striped">
         <thead>
@@ -30,19 +38,8 @@
     </table>
     <br/>
 
-    <div class="control-group">
-        <div class="controls">
-            <input name="tagText" ng-model="addTag.text" placeholder="new tag text" class="input-xlarge" size="60"/>
-          <button ng-click="add(addTag)" type="submit" class="btn btn-primary">
-              <span class="glyphicon glyphicon-plus"></span>Add new Tag
-          </button>
-        </div>
-    </div>
-
     <input type="checkbox" ng-model="debug"> Debug
-
     <br/>
-
     <pre ng-bind="tags|json" ng-show="debug"></pre>
     <!--</form> -->
 
