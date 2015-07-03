@@ -42,7 +42,8 @@ angular.module('yummy').controller('DishDetailCtrl', function($scope, $location,
     // If new dish create fresg dish object, otherwhise load from DB
     if (dishId === "new") {
         $scope.dish = new Dish(); // for new entries
-        $scope.dish.rating = 3;
+        $scope.dish.rating = 3; // default rating is rather low
+        $scope.dish.timesServed = 0;
         $scope.dish.created = new Date();
         $scope.msg = "New dish ready to be served";
     } else {
@@ -92,7 +93,8 @@ angular.module('yummy').controller('DishDetailCtrl', function($scope, $location,
             dish.created = new Date();
         }
         dish.$saveOrUpdate().then(function(data) {
-            resultPromise = data;
+            $scope.dish = data; // important for new so we get id etc.
+            //console.log(angular.toJson(data));
             $scope.msg = dish.name + " saved";
         });
     };
