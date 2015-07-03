@@ -1,4 +1,4 @@
-yummy [![Build Status](https://travis-ci.org/tillkuhn/yummy.svg?branch=master)](https://travis-ci.org/tillkuhn/yummy) [![Dependencies](https://david-dm.org/tillkuhn/yummy.svg)](https://david-dm.org/tillkuhn/yummy#info=dependencies&view=table) [![Coverage Status](https://coveralls.io/repos/tillkuhn/yummy/badge.svg)](https://coveralls.io/r/tillkuhn/yummy)
+yummy [![Build Status](https://travis-ci.org/tillkuhn/yummy.svg?branch=master)](https://travis-ci.org/tillkuhn/yummy) [![Dependencies](https://david-dm.org/tillkuhn/yummy.svg)](https://david-dm.org/tillkuhn/yummy#info=dependencies&view=table) [![Coverage Status](https://coveralls.io/repos/tillkuhn/yummy/badge.svg?branch=master)](https://coveralls.io/r/tillkuhn/yummy?branch=master)
 =====
 
 Motivation
