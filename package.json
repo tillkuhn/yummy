@@ -1,7 +1,7 @@
 {
   "name": "yummy",
   "version": "0.1.0",
-  "description": "A highly flexible yummy dish database",
+  "description": "A highly flexible database for your favourite dishes",
   "author": "Till Kuhn",
   "repository": {
     "type": "git",
