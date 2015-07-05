@@ -19,6 +19,7 @@
     "angular-bootstrap": "~0.12",
     "angular-cookie": "~4.0",
     "font-awesome": "~4.2",
-    "ng-tags-input": "~2.3"
+    "ng-tags-input": "~2.3",
+    "angular-confirm-modal": "~1.0.4"
   }
 }

@@ -1,4 +1,4 @@
-angular.module('yummy').controller('DishDetailCtrl', function($scope, $location, $log, $q, $routeParams, DEFAULT_ROUTE, Dish, Tag, Country, DiaryEntry) {
+angular.module('yummy').controller('DishDetailCtrl', function($scope, $location, $log, $q, $routeParams, $confirm, DEFAULT_ROUTE, Dish, Tag, Country, DiaryEntry) {
 
     var dishId = $routeParams['id'];
 
@@ -82,13 +82,16 @@ angular.module('yummy').controller('DishDetailCtrl', function($scope, $location,
 
     $scope.remove = function(dish) {
         //var project = new Project({'_id':{'$oid':1}, 'key':'value'});
-        var resultPromise;
-        dish.$remove().then(function(data) {
-            resultPromise = data;
-            $scope.msg = dish.name + " removed";
-            // $scope.overview(); // refresh
-            $location.path(DEFAULT_ROUTE);
-        });
+        $confirm({text: 'Are you sure you want to delete?'}).then(function() {
+          var resultPromise;
+          dish.$remove().then(function(data) {
+              resultPromise = data;
+              $scope.msg = dish.name + " removed";
+              // $scope.overview(); // refresh
+              $location.path(DEFAULT_ROUTE);
+          });
+
+       });
     };
 
     $scope.save = function(dish) {

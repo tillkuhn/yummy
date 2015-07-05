@@ -1,4 +1,4 @@
-angular.module('yummy', ['ui.bootstrap', 'ui.utils', 'ngRoute', 'ngAnimate','ngTagsInput','ngCookies','ipCookie','mongolabResourceHttp']);
+angular.module('yummy', ['ui.bootstrap', 'ui.utils', 'ngRoute', 'ngAnimate','ngTagsInput','ngCookies','ipCookie','mongolabResourceHttp','angular-confirm']);
 
 angular.module('yummy').config(function ($routeProvider) {
 
