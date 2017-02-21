@@ -34,6 +34,6 @@
   "dependencies": {
     "morgan": "~1.6",
     "gzippo": "~0.2",
-    "express": "~4.13"
+    "express": "~4.14.1"
   }
 }
