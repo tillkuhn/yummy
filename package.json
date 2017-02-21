@@ -32,7 +32,7 @@
     "grunt-template-jasmine-istanbul": "~0.3"
   },
   "dependencies": {
-    "morgan": "~1.6",
+    "morgan": "~1.8.1",
     "gzippo": "~0.2",
     "express": "~4.14.1"
   }
