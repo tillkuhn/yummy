@@ -1,6 +1,9 @@
 yummy [![Build Status](https://travis-ci.org/tillkuhn/yummy.svg?branch=master)](https://travis-ci.org/tillkuhn/yummy) [![Dependencies](https://david-dm.org/tillkuhn/yummy.svg)](https://david-dm.org/tillkuhn/yummy#info=dependencies&view=table) [![Coverage Status](https://coveralls.io/repos/tillkuhn/yummy/badge.svg?branch=master)](https://coveralls.io/r/tillkuhn/yummy?branch=master)
 =====
 
+This Project is no longer maintained, checkout the successor [yummy-aws](https://github.com/tillkuhn/yummy-aws) which is based on Angular 6 and DynamoDB!
+---
+
 Motivation
 -----
 Formally a CRUD application for my favourite recipes, but basically it's sample javascript project to learn AngularJS, MongoDB, Grunt, Jasmine and all the other funny things people are using these days
